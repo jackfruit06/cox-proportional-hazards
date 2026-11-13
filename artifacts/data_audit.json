@@ -1,0 +1,271 @@
+{
+  "files": {
+    "Freddie_Mac_Sample_2015_Data_Dictionary_Release47.xlsx": {
+      "bytes": 24237,
+      "sha256": "9777208240d748790e9a59b6a30d8d07021de0e7990d268e2a7d812153fb6ecf"
+    },
+    "sample_orig_2015.txt": {
+      "bytes": 6237206,
+      "sha256": "96f19fbbbf7cd76b3f27c74a77b9e24795278c9b0742791d9f497268ba2cec70"
+    },
+    "sample_perf_2015.txt": {
+      "bytes": 386828102,
+      "sha256": "8ea028b9058fc6f1e87ab7e006271daf1372bea6c6a4188a24209425325b1bca"
+    }
+  },
+  "performance_domains": {
+    "current_loan_delinquency_status": {
+      "00": 3415433,
+      "01": 23522,
+      "02": 6686,
+      "03": 3756,
+      "04": 2597,
+      "05": 2151,
+      "06": 1654,
+      "RA": 567,
+      "07": 1427,
+      "08": 1182,
+      "09": 1029,
+      "10": 925,
+      "11": 836,
+      "12": 742,
+      "13": 633,
+      "14": 527,
+      "15": 461,
+      "16": 419,
+      "17": 381,
+      "18": 345,
+      "19": 259,
+      "20": 236,
+      "21": 192,
+      "22": 151,
+      "23": 130,
+      "24": 110,
+      "25": 102,
+      "26": 91,
+      "27": 86,
+      "28": 60,
+      "29": 49,
+      "30": 48,
+      "31": 44,
+      "32": 36,
+      "33": 35,
+      "34": 32,
+      "35": 24,
+      "36": 21,
+      "37": 17,
+      "38": 17,
+      "39": 16,
+      "40": 14,
+      "41": 14,
+      "42": 11,
+      "43": 7,
+      "44": 8,
+      "45": 8,
+      "46": 7,
+      "47": 7,
+      "48": 7,
+      "49": 6,
+      "50": 5,
+      "51": 5,
+      "52": 5,
+      "53": 3,
+      "54": 2,
+      "55": 2,
+      "56": 2,
+      "57": 2,
+      "58": 2,
+      "59": 2,
+      "60": 2,
+      "61": 2,
+      "62": 2,
+      "63": 2,
+      "64": 2,
+      "65": 2,
+      "66": 2,
+      "67": 1,
+      "68": 1,
+      "69": 1,
+      "70": 1
+    },
+    "zero_balance_code": {
+      "": 3428675,
+      "01": 38212,
+      "96": 35,
+      "09": 55,
+      "15": 18,
+      "02": 45,
+      "16": 108,
+      "03": 18
+    },
+    "modification_flag": {
+      "": 3447815,
+      "Y": 507,
+      "P": 18844
+    },
+    "payment_deferral_flag": {
+      "": 3430025,
+      "C": 1062,
+      "P": 36079
+    },
+    "borrower_assistance_plan": {
+      "": 3446668,
+      "F": 17345,
+      "T": 2368,
+      "R": 785
+    }
+  },
+  "fatal": [],
+  "origination_rows": 50000,
+  "numeric_domains": [
+    {
+      "variable": "classic_fico_score",
+      "blank": 0,
+      "sentinel": 0,
+      "outside_domain": 0,
+      "outside_values": {}
+    },
+    {
+      "variable": "original_dti",
+      "blank": 0,
+      "sentinel": 4020,
+      "outside_domain": 0,
+      "outside_values": {}
+    },
+    {
+      "variable": "original_cltv",
+      "blank": 0,
+      "sentinel": 1,
+      "outside_domain": 0,
+      "outside_values": {}
+    },
+    {
+      "variable": "original_ltv",
+      "blank": 0,
+      "sentinel": 1,
+      "outside_domain": 0,
+      "outside_values": {}
+    },
+    {
+      "variable": "mortgage_insurance_percentage",
+      "blank": 0,
+      "sentinel": 0,
+      "outside_domain": 0,
+      "outside_values": {}
+    },
+    {
+      "variable": "number_of_units",
+      "blank": 0,
+      "sentinel": 0,
+      "outside_domain": 0,
+      "outside_values": {}
+    },
+    {
+      "variable": "number_of_borrowers",
+      "blank": 0,
+      "sentinel": 0,
+      "outside_domain": 0,
+      "outside_values": {}
+    },
+    {
+      "variable": "vantagescore_4",
+      "blank": 0,
+      "sentinel": 50000,
+      "outside_domain": 0,
+      "outside_values": {}
+    },
+    {
+      "variable": "original_interest_rate",
+      "blank": 0,
+      "sentinel": 0,
+      "outside_domain": 0,
+      "outside_values": {}
+    },
+    {
+      "variable": "original_upb",
+      "blank": 0,
+      "sentinel": 0,
+      "outside_domain": 0,
+      "outside_values": {}
+    },
+    {
+      "variable": "original_loan_term",
+      "blank": 0,
+      "sentinel": 0,
+      "outside_domain": 0,
+      "outside_values": {}
+    }
+  ],
+  "categorical_domains": {
+    "first_time_homebuyer_indicator": {
+      "N": 42202,
+      "Y": 7790,
+      "9": 8
+    },
+    "occupancy_status": {
+      "P": 44096,
+      "I": 4156,
+      "S": 1748
+    },
+    "channel": {
+      "R": 30430,
+      "C": 14616,
+      "B": 4954
+    },
+    "prepayment_penalty_indicator": {
+      "N": 50000
+    },
+    "amortization_type": {
+      "FRM": 50000
+    },
+    "property_type": {
+      "SF": 32566,
+      "PU": 13149,
+      "CO": 4012,
+      "MH": 176,
+      "CP": 97
+    },
+    "loan_purpose": {
+      "P": 22154,
+      "N": 17513,
+      "C": 10333
+    },
+    "super_conforming_flag": {
+      "N": 47960,
+      "Y": 2040
+    },
+    "special_eligibility_program": {
+      "": 49675,
+      "H": 311,
+      "F": 14
+    },
+    "harp_indicator": {
+      "N": 45983,
+      "Y": 4017
+    },
+    "property_valuation_method": {
+      "7": 50000
+    },
+    "interest_only_indicator": {
+      "N": 50000
+    }
+  },
+  "term_date_disagreements": 0,
+  "cltv_below_ltv": 0,
+  "performance_rows": 3467166,
+  "performance_loans": 50000,
+  "orig_only": [],
+  "perf_only": [],
+  "history_summary": {
+    "first_upb_zero": 24,
+    "first_zb_present": 24,
+    "loans_with_gaps": 2,
+    "missing_months": 3,
+    "loans_with_records_after_zb": 0,
+    "records_after_zb": 0,
+    "zb_date_mismatch": 36,
+    "loans_age_disagreement_unmodified": 464,
+    "loans_unknown_status": 0,
+    "loans_ra": 55
+  }
+}

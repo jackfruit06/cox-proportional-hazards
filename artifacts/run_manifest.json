@@ -1,0 +1,66 @@
+{
+  "run_utc": "2026-11-13T19:10:28.770280+00:00",
+  "seed_split": 20261114,
+  "seed_bootstrap": 20261115,
+  "bootstrap_replicates": 200,
+  "python": "3.12.7",
+  "versions": {
+    "numpy": "1.26.4",
+    "pandas": "2.2.2",
+    "scipy": "1.14.1",
+    "matplotlib": "3.9.2",
+    "seaborn": "0.13.2",
+    "statsmodels": "0.14.4",
+    "openpyxl": "3.1.2",
+    "nbformat": "5.10.4",
+    "nbclient": "0.10.2",
+    "ipykernel": "6.29.5",
+    "nbconvert": "7.16.6",
+    "ipython": "8.29.0"
+  },
+  "raw_files": {
+    "Freddie_Mac_Sample_2015_Data_Dictionary_Release47.xlsx": {
+      "bytes": 24237,
+      "sha256": "9777208240d748790e9a59b6a30d8d07021de0e7990d268e2a7d812153fb6ecf"
+    },
+    "sample_orig_2015.txt": {
+      "bytes": 6237206,
+      "sha256": "96f19fbbbf7cd76b3f27c74a77b9e24795278c9b0742791d9f497268ba2cec70"
+    },
+    "sample_perf_2015.txt": {
+      "bytes": 386828102,
+      "sha256": "8ea028b9058fc6f1e87ab7e006271daf1372bea6c6a4188a24209425325b1bca"
+    }
+  },
+  "source_code_sha256": {
+    "cox_model.py": "efa3e75862a68db1a53daeb464d1b992f9e3194b2194296f920ea681a42ec289",
+    "evaluation.py": "ce49d3c7e46ca685b4647b437d93e2a0359454a2d945a3405cfcf956274e99d8",
+    "preprocessing.py": "239218eff7285fb19d240f4a2b3df7d58551bb19e4f8fd79dbe787e33ef707df"
+  },
+  "n_raw": 50000,
+  "n_cohort": 49980,
+  "n_train": 37485,
+  "n_test": 12495,
+  "cause_counts": {
+    "2": 37305,
+    "0": 10656,
+    "1": 2019
+  },
+  "entry_late": 2736,
+  "fit_warnings": {
+    "1": [],
+    "2": []
+  },
+  "checks": {
+    "one_row_per_loan": true,
+    "strict_entry_exit": true,
+    "train_test_disjoint": true,
+    "train_only_preprocessing": true,
+    "finite_cox_coefficients": true,
+    "score_verified": true,
+    "information_verified": true,
+    "valid_monotone_cif_sum_to_one": true,
+    "raw_copies_match": true
+  },
+  "figures": 24
+}

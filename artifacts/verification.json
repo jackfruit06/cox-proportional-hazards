@@ -1,0 +1,169 @@
+{
+  "verified_utc": "2026-11-13T19:11:00.660387+00:00",
+  "notebook_clean_execution": true,
+  "executed_code_cells": 23,
+  "error_cells": 0,
+  "notebook_stderr_outputs": 0,
+  "figures": 24,
+  "figure_dimensions": {
+    "outputs/eda/cohort_flow.png": [
+      2604,
+      974
+    ],
+    "outputs/eda/missingness.png": [
+      1947,
+      843
+    ],
+    "outputs/eda/time_distributions.png": [
+      2827,
+      799
+    ],
+    "outputs/eda/continuous_distributions.png": [
+      3266,
+      1503
+    ],
+    "outputs/eda/continuous_boxplots.png": [
+      3046,
+      842
+    ],
+    "outputs/eda/categorical_distributions.png": [
+      2827,
+      1503
+    ],
+    "outputs/eda/correlation.png": [
+      1923,
+      1508
+    ],
+    "outputs/eda/characteristics_by_outcome.png": [
+      3046,
+      843
+    ],
+    "outputs/eda/aj_curves.png": [
+      2606,
+      953
+    ],
+    "outputs/eda/events_by_month.png": [
+      2385,
+      843
+    ],
+    "outputs/model/forest_hr.png": [
+      3045,
+      1721
+    ],
+    "outputs/model/baseline_hazard.png": [
+      2607,
+      843
+    ],
+    "outputs/model/profile_cif.png": [
+      2606,
+      953
+    ],
+    "outputs/diagnostics/schoenfeld.png": [
+      3486,
+      1503
+    ],
+    "outputs/diagnostics/martingale.png": [
+      3487,
+      1503
+    ],
+    "outputs/diagnostics/influence.png": [
+      2607,
+      843
+    ],
+    "outputs/evaluation/calibration.png": [
+      2396,
+      2163
+    ],
+    "outputs/evaluation/brier.png": [
+      2606,
+      953
+    ],
+    "outputs/evaluation/calibration_in_large.png": [
+      1946,
+      953
+    ],
+    "outputs/evaluation/predicted_cif_distribution.png": [
+      2384,
+      1503
+    ],
+    "outputs/evaluation/bootstrap_uncertainty.png": [
+      2597,
+      843
+    ],
+    "outputs/evaluation/landmark_calibration.png": [
+      3045,
+      931
+    ],
+    "outputs/evaluation/sensitivity.png": [
+      2607,
+      953
+    ],
+    "outputs/model/fico_functional_form.png": [
+      2606,
+      953
+    ]
+  },
+  "figure_visual_review": "All 24 figures reviewed in contact sheets; cohort flow and forest inspected at full size.",
+  "unicode_scan": "No U+FFFD or selected mojibake markers in source, text outputs, project Markdown or HTML.",
+  "unit_tests": {
+    "passed": 11,
+    "failed": 0,
+    "output": "test_aj_entry_and_competing (test_methods.Invariants.test_aj_entry_and_competing) ... ok\ntest_brier_competing_is_known_zero (test_methods.Invariants.test_brier_competing_is_known_zero) ... ok\ntest_cif_joint_hazard_and_conditioning (test_methods.Invariants.test_cif_joint_hazard_and_conditioning) ... ok\ntest_concordance_against_pairs (test_methods.Invariants.test_concordance_against_pairs) ... ok\ntest_event_priority_and_clocks (test_methods.Invariants.test_event_priority_and_clocks) ... ok\ntest_landmark_conditions (test_methods.Invariants.test_landmark_conditions) ... ok\ntest_month (test_methods.Invariants.test_month) ... ok\ntest_ph_score_matches_finite_difference (test_methods.Invariants.test_ph_score_matches_finite_difference) ... ok\ntest_reverse_km_ties (test_methods.Invariants.test_reverse_km_ties) ... ok\ntest_train_only_encoder (test_methods.Invariants.test_train_only_encoder) ... ok\ntest_validation_bootstrap_path (test_methods.Invariants.test_validation_bootstrap_path) ... ok\n\n----------------------------------------------------------------------\nRan 11 tests in 0.239s\n\nOK\n"
+  },
+  "model_fit_warnings": {
+    "1": [],
+    "2": []
+  },
+  "bootstrap_primary": [
+    {
+      "horizon": 12,
+      "bootstrap_success": 200,
+      "calibration_bootstrap_success": 200
+    },
+    {
+      "horizon": 36,
+      "bootstrap_success": 200,
+      "calibration_bootstrap_success": 200
+    },
+    {
+      "horizon": 60,
+      "bootstrap_success": 200,
+      "calibration_bootstrap_success": 200
+    },
+    {
+      "horizon": 120,
+      "bootstrap_success": 200,
+      "calibration_bootstrap_success": 200
+    }
+  ],
+  "bootstrap_landmark": [
+    {
+      "horizon": 36,
+      "bootstrap_success": 200,
+      "calibration_bootstrap_success": 200
+    },
+    {
+      "horizon": 60,
+      "bootstrap_success": 200,
+      "calibration_bootstrap_success": 200
+    },
+    {
+      "horizon": 120,
+      "bootstrap_success": 200,
+      "calibration_bootstrap_success": 200
+    }
+  ],
+  "source_hashes_match_execution": true,
+  "raw_copies_match_originals": true,
+  "notebook_sha256": "e5471eb4457b78df946108d0091094c6350491ce658bb9ecaaf5242d0a6af64b",
+  "html_report": "artifacts\\Cox_PH_Internal_Report.html",
+  "statistical_limits": [
+    "PH rejected for both causes",
+    "FICO nonlinearity",
+    "Independent truncation and censoring assumptions remain unproven",
+    "Primary absolute-risk validation restricted to L=0; landmark estimand differs",
+    "Bootstrap fixed-model test-sampling uncertainty only"
+  ],
+  "portable_raw_verification": true,
+  "raw_manifest_matches_originals": true
+}

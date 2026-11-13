@@ -1,0 +1,122 @@
+[
+  {
+    "name": "cohort_flow",
+    "path": "outputs/eda/cohort_flow.png",
+    "purpose": "Dòng cohort, các lý do loại và ba kết cục"
+  },
+  {
+    "name": "missingness",
+    "path": "outputs/eda/missingness.png",
+    "purpose": "Tỷ lệ thiếu sau nhận diện sentinel theo biến"
+  },
+  {
+    "name": "time_distributions",
+    "path": "outputs/eda/time_distributions.png",
+    "purpose": "Delayed entry, tuổi kết thúc và thời gian quan sát khác nhau thế nào"
+  },
+  {
+    "name": "continuous_distributions",
+    "path": "outputs/eda/continuous_distributions.png",
+    "purpose": "Phân phối các biến hợp đồng và rủi ro nền"
+  },
+  {
+    "name": "continuous_boxplots",
+    "path": "outputs/eda/continuous_boxplots.png",
+    "purpose": "Phạm vi và các giá trị cực trị của biến chính"
+  },
+  {
+    "name": "categorical_distributions",
+    "path": "outputs/eda/categorical_distributions.png",
+    "purpose": "Các nhóm phân loại có cân bằng hay quá hiếm"
+  },
+  {
+    "name": "correlation",
+    "path": "outputs/eda/correlation.png",
+    "purpose": "CLTV và LTV có mang thông tin gần trùng nhau"
+  },
+  {
+    "name": "characteristics_by_outcome",
+    "path": "outputs/eda/characteristics_by_outcome.png",
+    "purpose": "Phân phối đặc trưng theo kết cục quan sát"
+  },
+  {
+    "name": "aj_curves",
+    "path": "outputs/eda/aj_curves.png",
+    "purpose": "Incidence hai nguyên nhân và phân tầng FICO có khác nhau"
+  },
+  {
+    "name": "events_by_month",
+    "path": "outputs/eda/events_by_month.png",
+    "purpose": "Kết cục được ghi nhận ở những tuổi khoản vay nào"
+  },
+  {
+    "name": "forest_hr",
+    "path": "outputs/model/forest_hr.png",
+    "purpose": "Hướng và bất định của các liên hệ cause-specific"
+  },
+  {
+    "name": "baseline_hazard",
+    "path": "outputs/model/baseline_hazard.png",
+    "purpose": "Baseline cumulative hazard của hai nguyên nhân"
+  },
+  {
+    "name": "profile_cif",
+    "path": "outputs/model/profile_cif.png",
+    "purpose": "Hai hazard phối hợp tạo CIF cá nhân như thế nào"
+  },
+  {
+    "name": "schoenfeld",
+    "path": "outputs/diagnostics/schoenfeld.png",
+    "purpose": "Hệ số có thay đổi theo log thời gian"
+  },
+  {
+    "name": "martingale",
+    "path": "outputs/diagnostics/martingale.png",
+    "purpose": "Tuyến tính log-hazard có bỏ sót dạng quan hệ"
+  },
+  {
+    "name": "influence",
+    "path": "outputs/diagnostics/influence.png",
+    "purpose": "Có khoản vay nào ảnh hưởng mạnh theo xấp xỉ one-step"
+  },
+  {
+    "name": "calibration",
+    "path": "outputs/evaluation/calibration.png",
+    "purpose": "Mean prediction và AJ trong quintile có phù hợp"
+  },
+  {
+    "name": "brier",
+    "path": "outputs/evaluation/brier.png",
+    "purpose": "Cox có giảm sai số CIF so với AJ train"
+  },
+  {
+    "name": "calibration_in_large",
+    "path": "outputs/evaluation/calibration_in_large.png",
+    "purpose": "CIF dự báo và quan sát lệch thế nào theo horizon"
+  },
+  {
+    "name": "predicted_cif_distribution",
+    "path": "outputs/evaluation/predicted_cif_distribution.png",
+    "purpose": "Nguy cơ dự báo có phân tán và tập trung ở đâu"
+  },
+  {
+    "name": "bootstrap_uncertainty",
+    "path": "outputs/evaluation/bootstrap_uncertainty.png",
+    "purpose": "CI phản ánh biến thiên lấy mẫu test ra sao"
+  },
+  {
+    "name": "landmark_calibration",
+    "path": "outputs/evaluation/landmark_calibration.png",
+    "purpose": "Calibration sau landmark 12 có ổn định"
+  },
+  {
+    "name": "sensitivity",
+    "path": "outputs/evaluation/sensitivity.png",
+    "purpose": "Hai quy tắc thời gian và dạng FICO ảnh hưởng kết quả thế nào"
+  },
+  {
+    "name": "fico_functional_form",
+    "path": "outputs/model/fico_functional_form.png",
+    "purpose": "Đặc tả tuyến tính và bậc hai cho FICO khác nhau ở đâu"
+  }
+]

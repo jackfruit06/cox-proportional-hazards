@@ -1,0 +1,82 @@
+{
+  "medians": {
+    "classic_fico_score": 760.0,
+    "original_dti": 35.0,
+    "original_ltv": 78.0,
+    "original_interest_rate": 4.0,
+    "original_upb": 200000.0,
+    "original_loan_term": 360.0,
+    "mortgage_insurance_percentage": 0.0
+  },
+  "scales": {
+    "classic_fico_score": 50,
+    "original_dti": 10,
+    "original_ltv": 10,
+    "original_interest_rate": 1,
+    "original_upb": 100000,
+    "original_loan_term": 120,
+    "mortgage_insurance_percentage": 10
+  },
+  "missing_indicators": [
+    "original_dti"
+  ],
+  "levels": {
+    "occupancy_status": [
+      "P",
+      "I",
+      "S"
+    ],
+    "loan_purpose": [
+      "P",
+      "C",
+      "N"
+    ],
+    "property_type": [
+      "SF",
+      "CO",
+      "PU"
+    ],
+    "first_time_homebuyer_indicator": [
+      "N",
+      "Y"
+    ],
+    "number_of_units": [
+      "1",
+      "2"
+    ],
+    "number_of_borrowers": [
+      "2",
+      "1"
+    ]
+  },
+  "references": {
+    "occupancy_status": "P",
+    "loan_purpose": "P",
+    "property_type": "SF",
+    "first_time_homebuyer_indicator": "N",
+    "number_of_units": "1",
+    "number_of_borrowers": "2"
+  },
+  "columns": [
+    "classic_fico_score",
+    "original_dti",
+    "original_ltv",
+    "original_interest_rate",
+    "original_upb",
+    "original_loan_term",
+    "mortgage_insurance_percentage",
+    "original_dti__missing",
+    "occupancy_status__I",
+    "occupancy_status__S",
+    "loan_purpose__C",
+    "loan_purpose__N",
+    "property_type__CO",
+    "property_type__PU",
+    "first_time_homebuyer_indicator__Y",
+    "number_of_units__2",
+    "number_of_borrowers__1"
+  ],
+  "dropped_constant": [],
+  "quadratic_fico": false,
+  "training_id_sha256": "836182667928095659d6748509ada43fd3cd6c80d404c37946e2280491dc266b"
+}

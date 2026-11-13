@@ -1,0 +1,7 @@
+﻿reason,n,cause1,cause2
+input,50000,2019,37325
+no_performance,0,0,0
+terminal_before_observation,0,0,0
+nonpositive_follow_up,20,0,20
+terminal_before_FPD,0,0,0
+retained,49980,2019,37305
