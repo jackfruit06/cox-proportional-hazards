@@ -1,0 +1,1442 @@
+{
+  "baseline_commit": "4b31e25bb55bca89fdb9aca683c4c26031b36c04",
+  "current_stage": "P6",
+  "status": "COMPLETE",
+  "P3_authorized": true,
+  "stages": {
+    "P1": {
+      "stage": "P1",
+      "status": "PASS",
+      "implementation_checks": "PASS",
+      "P2_authorized": true,
+      "created_utc": "2026-11-13T20:59:53.651437+00:00",
+      "baseline_commit": "4b31e25bb55bca89fdb9aca683c4c26031b36c04",
+      "baseline_branch": "main",
+      "baseline_notebook_sha256": "e5471eb4457b78df946108d0091094c6350491ce658bb9ecaaf5242d0a6af64b",
+      "baseline_preprocessing_sha256": "239218eff7285fb19d240f4a2b3df7d58551bb19e4f8fd79dbe787e33ef707df",
+      "historical_audit_report_sha256": "5ac29aaf6dcd168700274111d09b3cfc41d5dac050c459749e8b37482654d054",
+      "raw_rows": {
+        "origination": 50000,
+        "performance": 3467166
+      },
+      "before_counts": {
+        "0": 10656,
+        "1": 2019,
+        "2": 37305
+      },
+      "after_counts": {
+        "0": 10656,
+        "1": 2019,
+        "2": 37305
+      },
+      "cause2_sources": {
+        "ZB": 37304,
+        "RA": 1
+      },
+      "cohort_n": 49980,
+      "exclusions_n": 20,
+      "late_entry_n": 2736,
+      "same_month_numeric_competing_n": 30,
+      "RA_ZB_same_month_n": 0,
+      "RA_loans_n": 55,
+      "RA_records_n": 567,
+      "post_numeric90_RA_preserved_n": 54,
+      "follow_up_months_before": 3338772,
+      "follow_up_months_after": 3338768,
+      "train_n": 37485,
+      "test_n": 12495,
+      "split_IDs_unchanged": true,
+      "changed_loans": [
+        {
+          "loan_identifier": "F15Q30019368",
+          "split": "test",
+          "FPD": "201509",
+          "first_observed": "201508",
+          "first_numeric_90": null,
+          "first_RA": "201703",
+          "ZB_reporting": "201707",
+          "ZB_effective": "201707",
+          "ZB_code": "09",
+          "last_observed": "201707",
+          "before": {
+            "J": 2,
+            "L": 0,
+            "T": 23,
+            "follow_up": 23,
+            "event_source": "ZB",
+            "terminal_month": "201707"
+          },
+          "after": {
+            "J": 2,
+            "L": 0,
+            "T": 19,
+            "follow_up": 19,
+            "event_source": "RA",
+            "terminal_month": "201703"
+          },
+          "reason": "First RA precedes ZB; no observed numeric 90+. Stop broader competing exit at RA."
+        }
+      ],
+      "cohort_flow": [
+        {
+          "reason": "input",
+          "n": 50000,
+          "cause1": 2019,
+          "cause2": 37325
+        },
+        {
+          "reason": "no_performance",
+          "n": 0,
+          "cause1": 0,
+          "cause2": 0
+        },
+        {
+          "reason": "terminal_before_observation",
+          "n": 0,
+          "cause1": 0,
+          "cause2": 0
+        },
+        {
+          "reason": "nonpositive_follow_up",
+          "n": 20,
+          "cause1": 0,
+          "cause2": 20
+        },
+        {
+          "reason": "terminal_before_FPD",
+          "n": 0,
+          "cause1": 0,
+          "cause2": 0
+        },
+        {
+          "reason": "retained",
+          "n": 49980,
+          "cause1": 2019,
+          "cause2": 37305
+        }
+      ],
+      "checks": {
+        "old_raw_cohort_matches_frozen_bundle": true,
+        "unique_loan_outcome": true,
+        "strict_entry_exit": true,
+        "T_positive": true,
+        "source_matches_cause": true,
+        "all_RA_loans_exit_no_later_than_RA": true,
+        "baseline_artifacts_and_raw_unchanged": true
+      },
+      "tests": {
+        "command": "python -m unittest discover -s tests -v",
+        "passed": 16,
+        "failed": 0,
+        "skipped": 0
+      },
+      "preserved_baseline_files_sha256": {
+        "data/Freddie_Mac_Sample_2015_Data_Dictionary_Release47.xlsx": "9777208240d748790e9a59b6a30d8d07021de0e7990d268e2a7d812153fb6ecf",
+        "data/sample_orig_2015.txt": "96f19fbbbf7cd76b3f27c74a77b9e24795278c9b0742791d9f497268ba2cec70",
+        "data/sample_perf_2015.txt": "8ea028b9058fc6f1e87ab7e006271daf1372bea6c6a4188a24209425325b1bca",
+        "artifacts/Cox_PH_Internal_Report.html": "0aa1961d0c1a9fdde9a2ca0f8b6dde3a39bcfaad2b04bac0727fa623f405a22a",
+        "artifacts/data_audit.json": "28fac870c662b1e434c48d09f01c672360d4034c93ebe437e5630d85f68c6f5b",
+        "artifacts/figures_manifest.json": "30af05d0f53124e638025a3bdee5d97456a1c706470b0eb1375b059fb6a58e6a",
+        "artifacts/preprocessing.json": "ec5cdb42e69eafb95490ad0b5de8e33d9a64ccd553d89f9a358d8d8154e08790",
+        "artifacts/research_bundle.pkl": "73e6095079b4f3a6009524cee0be63abfe9a3ce498cf2a7efc790792dca22f82",
+        "artifacts/run_manifest.json": "a288421609deb6d9ef148585ce2fd8a0aff5a34a6e7511a13e9648088369c9da",
+        "artifacts/source_manifest.json": "4b7f157ce1ca58b70cce4fb9132db1cea754cf351348a08d5b41c14e43d37f23",
+        "artifacts/tables/cause_specific_concordance.csv": "e8b09f7e269ed7fe7dcf0cb7d75e84563a5d13c42e0003515457891c7045daca",
+        "artifacts/tables/cohort_exclusions.csv": "b2a538a76c662f7399ae76b2a2d6cb7fbbb2f19e7ee7b1b4f8a49ed4b4ad13e3",
+        "artifacts/tables/cohort_flow.csv": "03a10478713b6c1fbe43fb0da38dce0543adcd80231146ecdd1d9d83534cee18",
+        "artifacts/tables/cox_coefficients.csv": "f189bdea38da8c958b7935c2c63c94ffe68b9ab198e91825697cda580e1dad80",
+        "artifacts/tables/descriptive_statistics.csv": "21eaeb1323c1730d68d9c193e12700bb2a1b27841164f3074c518fda9b3531e8",
+        "artifacts/tables/functional_form_scores.csv": "81e3029fab03a8426df169817f89a0d8a9a571ff60332e2fdab7664150c689ab",
+        "artifacts/tables/landmark12_validation.csv": "58e1bafc00381b7fb25562ac815fe681280b689b052ff8828c9d008967bf74dd",
+        "artifacts/tables/ph_score_tests.csv": "42a68d1798c5936ed480feb615dfa29647f52ebe10c993108685bedcae9d6a8b",
+        "artifacts/tables/primary_calibration.csv": "3fab247dda1758599e7071d3043591702903b5b3e83de3a25ae78351015de8b5",
+        "artifacts/tables/primary_validation.csv": "542a4d2871f7b6cca8da8543838f35ea6d2aed0590df38fe795642bae260fa4e",
+        "artifacts/tables/sensitivity_coefficients.csv": "bac7c32bf0c69a20a06d4b8816de5625f880635eae2547b108bed286e7dea020",
+        "artifacts/tables/sensitivity_cohort_changes.csv": "36196c477f256249a8a393d2700c610d2bd705ca3061963dce5ac0ed25722cfa",
+        "artifacts/tables/sensitivity_metrics.csv": "a16b2e53ce525d3b377b5afe7109f8e49a946c018ea3a8557d75302563f54d6a",
+        "artifacts/verification.json": "7569e8d200cb9765850fa69f42dbc9633e1c8d8d073ea3d66c7a81390d666c6a",
+        "outputs/diagnostics/influence.png": "452464dccd275899bdb5f90ddb87da6b051376ef2e6062cba7686dea6fb6f5f9",
+        "outputs/diagnostics/martingale.png": "375f07878f1ecbfa1d302e79b28d96191cdfb87024937a4081ffa24eb47c8c54",
+        "outputs/diagnostics/schoenfeld.png": "59d3d2cf190b23dd0d49e87ae43281f72392f7a5d9760ca233da209fb1dcd634",
+        "outputs/eda/aj_curves.png": "871e8d8728e3c5b18ced98bc169567a13b28ab14c6b93ed08192405916c10600",
+        "outputs/eda/categorical_distributions.png": "1acf33dbbd0748811494b51cca2acc9f74d6328b16c1f9f57046b786b472e699",
+        "outputs/eda/characteristics_by_outcome.png": "36ba3cca6d5020bab323392bc0bfbe8958bf404e55357ba0a20a1381a66a49cb",
+        "outputs/eda/cohort_flow.png": "8c9e9d6f580efc77ece736a5217b288516f920bfa350b9636670161e4aa3b24c",
+        "outputs/eda/continuous_boxplots.png": "216f4537ec61f23fbeabcf43960c6046c83dd332e5998fed6b313babc49bb1d0",
+        "outputs/eda/continuous_distributions.png": "e5ec967e0c3ca05ab1506529dd3e6d7b8faba14d8fb06ab289bbb99ff9f8c3ae",
+        "outputs/eda/correlation.png": "48784d3b45e40ca3ee7187eebe099b7cfb3a36a68bfb52a544f39185b9ddd86a",
+        "outputs/eda/events_by_month.png": "7bc6bf590752ab738e973ac8eba5d72dc1e1b83876cd1160bdca9d559fac04ca",
+        "outputs/eda/missingness.png": "37fca5182162ad26435e8cc7fa6d78b99fe4e568ad1ecbb7be679066912c4473",
+        "outputs/eda/time_distributions.png": "f3e5245c160a174a069f170db931b890cbd4df88b2fcd689e135ed6124e99ea2",
+        "outputs/evaluation/bootstrap_uncertainty.png": "f54d8687e8a52e2eb1b5bdee7b4a2986d47788b56631d8c9ec3137a402a9ef60",
+        "outputs/evaluation/brier.png": "60ee56197de25ec5eb9a343f783988e8f1b56fc02e998c8de9ce622d5dbb1a32",
+        "outputs/evaluation/calibration.png": "689982ae133d5c33948208799f240f6d66267604e3dbdb7e95e26f90e96ac5c0",
+        "outputs/evaluation/calibration_in_large.png": "e2494962e14aeab095da3d28f982b17855496cb4c83fdd53d2230598cf71c433",
+        "outputs/evaluation/landmark_calibration.png": "2796238aa8accde5fe87b09cdcf45a0901b9e559f7e81261a0ddf07afb7da933",
+        "outputs/evaluation/predicted_cif_distribution.png": "17cfd060ab8bbae1fff2b9a672e68a88bed9bbc2e71c74c86a1cd083efb6584a",
+        "outputs/evaluation/sensitivity.png": "eeeba162b7279dd5328859fbafe06213bcccde6a66f7bce16a8cb3567bd8c62c",
+        "outputs/model/baseline_hazard.png": "418594a5db2e0ab75892ac923ad481564b7c2c6a6642fa6b572a628dae3ff42a",
+        "outputs/model/fico_functional_form.png": "40ab877c398ca0701ac9e225db0e9e12479323c33d2cb10f8ca4385b5da0d91c",
+        "outputs/model/forest_hr.png": "c007288cf7b61d03b08e33fd51529c4f4c4f4565270953e4466a0391c2e80211",
+        "outputs/model/profile_cif.png": "18cef52bc9839813df93b217dcb511bb8b1bd70374ab95dd654e987e4208f0c3"
+      },
+      "model_refit": false,
+      "legacy_holdout_scored": false,
+      "next_stage": "P1 accepted; P2 authorized and executed. Historical P1 hashes retained.",
+      "notebook_checks": {
+        "nbformat_valid": true,
+        "code_cells_parse": 23,
+        "changed_zero_based_cells": [
+          0,
+          2,
+          3,
+          6,
+          7,
+          8,
+          38
+        ],
+        "other_saved_outputs_preserved": true,
+        "cell7_smoke_run": "PASS using frozen retained history summaries; no exports",
+        "full_raw_cohort_check": "PASS separately on 50000 origination / 3467166 performance rows",
+        "full_notebook_execution": false
+      },
+      "current_notebook_sha256": "a3c8429836acde07a5eed484d9e69f133e567f751c8ca7f500a72e6e4d76133d",
+      "P1_files_sha256": {
+        "README.md": "59f96eaf120815881f2e16a8a2a0bc2cce42bf0195e2a88217881c651cf23c70",
+        "analysis_contract.md": "5ff508665589d5589efb08ca930a8bfe2a53eafe04e15248052ebbc569075631",
+        "stage_report.md": "15fc26d635ef0ee8d7291cb4facd8b7915215527726c88d058b469ef35b85bb0",
+        "src/preprocessing.py": "9e9bc915a52f4ac84d776ae5c7f55fe2f28cf539537cef8a571a2f4bc3943fa4",
+        "tests/test_methods.py": "d6a58ce56b7380af31a7b8cdcb4dd957b8a699956fb4d2b5554e36d271f5a1fb",
+        "notebooks/Cox_PH_Internal_Report.ipynb": "a3c8429836acde07a5eed484d9e69f133e567f751c8ca7f500a72e6e4d76133d"
+      },
+      "status_at_creation": "RESEARCHER DECISION REQUIRED",
+      "acceptance": {
+        "accepted": true,
+        "authority": "Explicit researcher acceptance of P1 and authorization for P2 in this conversation."
+      }
+    },
+    "P2": {
+      "stage": "P2",
+      "status": "PASS",
+      "validation_status": "PASS",
+      "completed_utc": "2026-11-13T21:21:38.381237+00:00",
+      "accepted_P1_preprocessing_sha256": "9e9bc915a52f4ac84d776ae5c7f55fe2f28cf539537cef8a571a2f4bc3943fa4",
+      "event_policy_changed": false,
+      "tests": {
+        "run": 37,
+        "passed": 37,
+        "failed": 0,
+        "errors": 0,
+        "skipped": 0,
+        "existing_fit_based_tests_not_run": [
+          "test_ph_score_matches_finite_difference",
+          "test_validation_bootstrap_path"
+        ],
+        "no_fit_guard": "PHReg.fit patched to fail for the entire P2 suite",
+        "initial_test_correction": "Removed incorrect terminal<=last reporting month assumption; explicitly validate documented ZB effective exits after last report, without changing policy.",
+        "command": "python tests/test_cohort_risksets.py -v",
+        "environment": {
+          "COX_FULL_COHORT_TESTS": "1",
+          "PYTHONUTF8": "1",
+          "PYTHONDONTWRITEBYTECODE": "1",
+          "OPENBLAS_NUM_THREADS": "1",
+          "OMP_NUM_THREADS": "1"
+        },
+        "last_cli_run": {
+          "passed": 37,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 0,
+          "seconds": 31.31
+        },
+        "nonfatal_warnings": [
+          "preprocessing.audit_sources:131 ResourceWarning: performance reader implicit cleanup",
+          "openpyxl DeprecationWarning: datetime.utcnow"
+        ]
+      },
+      "results": {
+        "raw_rows": {
+          "origination": 50000,
+          "performance": 3467166
+        },
+        "cohort_n": 49980,
+        "exclusions_n": 20,
+        "counts": {
+          "0": 10656,
+          "1": 2019,
+          "2": 37305
+        },
+        "cause2_sources": {
+          "ZB": 37304,
+          "RA": 1
+        },
+        "late_entry_n": 2736,
+        "person_months": 3338768,
+        "train_n": 37485,
+        "test_n": 12495,
+        "monthly_grid": {
+          "first": 1,
+          "last": 135,
+          "n": 135
+        },
+        "model_refits": 0,
+        "risk_membership_cells_checked": 6747300,
+        "risk_membership_violations": 0,
+        "risk_count_min_max": [
+          0,
+          48296
+        ],
+        "Cox_fixed_parameter_risk_checks": {
+          "1": {
+            "event_times": 127,
+            "events": 2019,
+            "loglike_abs_error": 2.546585164964199e-11,
+            "score_max_abs_error": 3.410605131648481e-13,
+            "information_max_abs_error": 9.663381206337363e-13
+          },
+          "2": {
+            "event_times": 133,
+            "events": 37305,
+            "loglike_abs_error": 5.820766091346741e-11,
+            "score_max_abs_error": 4.405364961712621e-12,
+            "information_max_abs_error": 1.5916157281026244e-11
+          }
+        },
+        "known_ZB_effective_exits_after_last_report_n": 32,
+        "max_effective_exit_after_last_report_months": 1,
+        "all_loan_policy_checks": true,
+        "AJ_max_abs_error": 0.0,
+        "comparable_pairs_test": 3650477,
+        "concordance_probe": "all scores tied; membership check only, not model evaluation",
+        "reverse_KM_max_abs_error": 0.0,
+        "validation_populations": {
+          "0": {
+            "train_n": 35460,
+            "test_n": 11784,
+            "late_test_included_n": 0
+          },
+          "12": {
+            "train_n": 34063,
+            "test_n": 11292,
+            "late_test_included_n": 317
+          }
+        },
+        "RA": {
+          "loans": 55,
+          "post90_unchanged": 54,
+          "pre90_RA_terminal_age": 19,
+          "risk_at_19": true,
+          "risk_at_20": false,
+          "post_RA_risk_violations": 0
+        },
+        "preserved_raw_artifact_output_files": 48,
+        "split_IDs_unchanged": true,
+        "train_ID_sha256": "836182667928095659d6748509ada43fd3cd6c80d404c37946e2280491dc266b",
+        "test_ID_sha256": "5b5635dc858a46406c5f2b98face6be1731a54e7fe0cc6ba2ae853ef0a261864"
+      },
+      "model_refit": false,
+      "model_or_encoder_selection": false,
+      "legacy_holdout_predictions_scored": false,
+      "P3_authorized": true,
+      "next_stage": "P3 authorized under autonomous sequential policy; P2 checks passed.",
+      "notebook_checks": {
+        "changed_markdown_cells_from_P1": [
+          0,
+          8,
+          38
+        ],
+        "code_cells_unchanged_from_P1": true,
+        "saved_outputs_unchanged_from_P1": true,
+        "nbformat_valid": true,
+        "code_cells_parse": 23,
+        "full_execution": false
+      },
+      "P2_files_sha256": {
+        "README.md": "f93f17db73ccf23dc0fe4dbeee99ec0a6df528b1b3c3088dc7a365c14ed32659",
+        "analysis_contract.md": "de881391c9d5e0f229dafc831eee77df24985747fc6af22fc2b833ba2f98a37c",
+        "stage_report.md": "ae8c937b6576d4db019f9dcccae23450a720045a49e0538295a04d3cc6e658d2",
+        "tests/test_cohort_risksets.py": "2359c9f25595579324560d715960376852eef251273ec24c3bd4b8771c75ad2c",
+        "notebooks/Cox_PH_Internal_Report.ipynb": "64ea85f03f940508af8c7bb9920eb0b5a8ddec88446f1062e2306d46f34afc46"
+      },
+      "unchanged_production_files_sha256": {
+        "src/preprocessing.py": "9e9bc915a52f4ac84d776ae5c7f55fe2f28cf539537cef8a571a2f4bc3943fa4",
+        "src/cox_model.py": "efa3e75862a68db1a53daeb464d1b992f9e3194b2194296f920ea681a42ec289",
+        "src/evaluation.py": "ce49d3c7e46ca685b4647b437d93e2a0359454a2d945a3405cfcf956274e99d8",
+        "tests/test_methods.py": "d6a58ce56b7380af31a7b8cdcb4dd957b8a699956fb4d2b5554e36d271f5a1fb"
+      },
+      "researcher_acceptance": {
+        "accepted": true,
+        "accepted_utc": "2026-11-14T02:53:25.386979+00:00",
+        "authority": "Explicit researcher message: P2 is ACCEPTED; 37 P2 tests satisfactory; proceed autonomously through P6.",
+        "scope": "Accepted P1 cohort policy and full-cohort/risk-set validation; no event-clock change."
+      }
+    },
+    "P3": {
+      "status": "PASS",
+      "completed_utc": "2026-11-13T21:28:59.733390+00:00",
+      "selected": "B_FICO_RCS",
+      "nfolds": 3,
+      "legacy_test_used": false,
+      "comparison": [
+        {
+          "specification": "A_linear",
+          "cause": 1,
+          "parameters": 17,
+          "log_likelihood": -14524.144514379346,
+          "AIC": 29082.289028758692,
+          "max_abs_score": 5.642153411145046e-13,
+          "min_covariance_eigenvalue": 0.0001654821765876858,
+          "PH_global_chi2": 81.1980191918424,
+          "PH_global_p": 2.347895906830322e-10,
+          "OOF_Brier_mean_36_60_120": 0.02384819843531308
+        },
+        {
+          "specification": "A_linear",
+          "cause": 2,
+          "parameters": 17,
+          "log_likelihood": -277070.4242284002,
+          "AIC": 554174.8484568004,
+          "max_abs_score": 6.2163607594811765e-12,
+          "min_covariance_eigenvalue": 9.640833036424591e-06,
+          "PH_global_chi2": 480.2428757358598,
+          "PH_global_p": 2.7311403806543756e-91,
+          "OOF_Brier_mean_36_60_120": 0.02384819843531308
+        },
+        {
+          "specification": "B_FICO_RCS",
+          "cause": 1,
+          "parameters": 18,
+          "log_likelihood": -14511.007424172296,
+          "AIC": 29058.014848344592,
+          "max_abs_score": 7.874811913666235e-13,
+          "min_covariance_eigenvalue": 0.00016601165006571627,
+          "PH_global_chi2": 90.81765932154799,
+          "PH_global_p": 1.0295166775513988e-11,
+          "OOF_Brier_mean_36_60_120": 0.023823805883889073
+        },
+        {
+          "specification": "B_FICO_RCS",
+          "cause": 2,
+          "parameters": 18,
+          "log_likelihood": -277055.0353849625,
+          "AIC": 554146.070769925,
+          "max_abs_score": 5.342393194496253e-12,
+          "min_covariance_eigenvalue": 9.572074989026569e-06,
+          "PH_global_chi2": 483.18108254125815,
+          "PH_global_p": 3.566494000677431e-91,
+          "OOF_Brier_mean_36_60_120": 0.023823805883889073
+        },
+        {
+          "specification": "C_targeted_RCS",
+          "cause": 1,
+          "parameters": 18,
+          "log_likelihood": -14511.007424172296,
+          "AIC": 29058.014848344592,
+          "max_abs_score": 7.874811913666235e-13,
+          "min_covariance_eigenvalue": 0.00016601165006571627,
+          "PH_global_chi2": 90.81765932154799,
+          "PH_global_p": 1.0295166775513988e-11,
+          "OOF_Brier_mean_36_60_120": 0.023821374378571753
+        },
+        {
+          "specification": "C_targeted_RCS",
+          "cause": 2,
+          "parameters": 20,
+          "log_likelihood": -277040.8519306048,
+          "AIC": 554121.7038612096,
+          "max_abs_score": 9.85522774499259e-12,
+          "min_covariance_eigenvalue": 6.3652941884122505e-06,
+          "PH_global_chi2": 497.93890546759263,
+          "PH_global_p": 7.859861199374279e-93,
+          "OOF_Brier_mean_36_60_120": 0.023821374378571753
+        }
+      ],
+      "LR": [
+        {
+          "smaller": "A_linear",
+          "larger": "B_FICO_RCS",
+          "cause": 1,
+          "df": 1,
+          "LR": 26.274180414100556,
+          "p": 2.9622256595825703e-07
+        },
+        {
+          "smaller": "A_linear",
+          "larger": "B_FICO_RCS",
+          "cause": 2,
+          "df": 1,
+          "LR": 30.777686875429936,
+          "p": 2.893458488701334e-08
+        },
+        {
+          "smaller": "B_FICO_RCS",
+          "larger": "C_targeted_RCS",
+          "cause": 2,
+          "df": 2,
+          "LR": 28.366908715455793,
+          "p": 6.921560799309773e-07
+        }
+      ],
+      "paired_comparisons": [
+        {
+          "smaller": "A_linear",
+          "larger": "B_FICO_RCS",
+          "OOF_Brier_gain": 2.43925514240087e-05,
+          "paired_fold_SE": 3.3546173277205035e-06,
+          "relative_gain": 0.0010228257488787737
+        },
+        {
+          "smaller": "B_FICO_RCS",
+          "larger": "C_targeted_RCS",
+          "OOF_Brier_gain": 2.431505317319893e-06,
+          "paired_fold_SE": 2.936430485766551e-06,
+          "relative_gain": 0.00010206200172929576
+        }
+      ],
+      "knots": {
+        "classic_fico_score": [
+          683.0,
+          760.0,
+          803.0
+        ],
+        "original_ltv": [
+          49.0,
+          78.0,
+          95.0
+        ],
+        "original_upb": [
+          90000.0,
+          200000.0,
+          396000.0
+        ]
+      },
+      "selection_rule": "Compare A/B/C with fold-specific encoding/knots, then choose on train.\n\n    Locked rule: B addresses replicated FICO nonlinearity if each training LR\n    p<.01 and OOF loss is not worse by more than one paired fold SE. Add the\n    two Cause-2 terms in C only for >0.5% relative OOF improvement AND >one\n    paired fold SE. Fold SE is a parsimony heuristic, not a formal coverage CI.\n    All fits must converge without warnings. No legacy holdout is accepted.\n    ",
+      "tests_passed": 5,
+      "original_baseline_coefficients_reproduced": true,
+      "next_stage": "P4",
+      "functional_form_plot": "outputs/model/fico_functional_form.png",
+      "shape_display_range": "training 1st to 99th percentile, median-reference joint 95% model-based CI",
+      "reproduced_in_P6_UTC": "2026-11-14T02:44:56.478823+00:00"
+    },
+    "P4": {
+      "status": "PASS WITH LIMITATIONS",
+      "selected": "static",
+      "completed_utc": "2026-11-13T21:33:53.030937+00:00",
+      "tests_passed": 8,
+      "legacy_test_used": false,
+      "comparisons": [
+        {
+          "specification": "static",
+          "OOF_Brier_mean": 0.023823458485696367,
+          "OOF_gain": 0.0,
+          "paired_fold_SE": 0.0,
+          "relative_gain": 0.0,
+          "max_profile_CIF_difference": 0.0
+        },
+        {
+          "specification": "TV_FICO_C1",
+          "OOF_Brier_mean": 0.023834375932336102,
+          "OOF_gain": -1.0917446639737103e-05,
+          "paired_fold_SE": 7.557878800544938e-06,
+          "relative_gain": -0.00045826455660465717,
+          "max_profile_CIF_difference": 0.0013307335661422327
+        },
+        {
+          "specification": "TV_rate_C2",
+          "OOF_Brier_mean": 0.023826915614457475,
+          "OOF_gain": -3.4571287611089483e-06,
+          "paired_fold_SE": 4.534140832668669e-06,
+          "relative_gain": -0.00014511447878924098,
+          "max_profile_CIF_difference": 0.0008409200372950856
+        },
+        {
+          "specification": "TV_both",
+          "OOF_Brier_mean": 0.023836607775551525,
+          "OOF_gain": -1.3149289855160043e-05,
+          "paired_fold_SE": 6.920199313212128e-06,
+          "relative_gain": -0.000551947143319048,
+          "max_profile_CIF_difference": 0.001165458496517835
+        }
+      ],
+      "evidence": [
+        {
+          "cause": 1,
+          "variable": "classic_fico_score",
+          "training_LR": 48.028449758319766,
+          "p": 4.200794047189941e-12,
+          "HR_12": 0.26756361098445314,
+          "HR_60": 0.41859125553908,
+          "HR_ratio_change": 1.5644550991031525,
+          "retain": false
+        },
+        {
+          "cause": 2,
+          "variable": "original_interest_rate",
+          "training_LR": 162.61796727392357,
+          "p": 3.031671181443752e-37,
+          "HR_12": 2.2476807680765463,
+          "HR_60": 1.5461425686128514,
+          "HR_ratio_change": 1.4537344832909505,
+          "retain": false
+        }
+      ],
+      "selection_rule": "At most one prespecified effect per cause: FICO (1), rate (2).\n\n    Retain only if training LR p<.01/2, HR contrast changes >=25% between\n    ages 12 and 60, reference-profile CIF changes >=0.002 at a selected horizon,\n    and relative OOF Brier gain >0.5% AND >one paired fold SE. Otherwise retain\n    the smaller working specification and disclose remaining non-PH.\n    ",
+      "PH": [
+        [
+          {
+            "variable": "GLOBAL",
+            "chi2": 90.81765932154799,
+            "df": 18,
+            "p": 1.0295166775513988e-11,
+            "p_holm": null,
+            "cause": 1
+          },
+          {
+            "variable": "classic_fico_score",
+            "chi2": 51.27718409447173,
+            "df": 1,
+            "p": 8.020238865500915e-13,
+            "p_holm": 1.4436429957901647e-11,
+            "cause": 1
+          },
+          {
+            "variable": "original_dti",
+            "chi2": 0.018425844953272656,
+            "df": 1,
+            "p": 0.8920253766129678,
+            "p_holm": 1.0,
+            "cause": 1
+          },
+          {
+            "variable": "original_ltv",
+            "chi2": 9.880838085702605,
+            "df": 1,
+            "p": 0.0016700885293247595,
+            "p_holm": 0.021711150881221872,
+            "cause": 1
+          },
+          {
+            "variable": "original_interest_rate",
+            "chi2": 16.78408475034044,
+            "df": 1,
+            "p": 4.18831089708586e-05,
+            "p_holm": 0.0006701297435337376,
+            "cause": 1
+          },
+          {
+            "variable": "original_upb",
+            "chi2": 16.197856983920346,
+            "df": 1,
+            "p": 5.7058628120491846e-05,
+            "p_holm": 0.0008558794218073777,
+            "cause": 1
+          },
+          {
+            "variable": "original_loan_term",
+            "chi2": 0.13348286481999577,
+            "df": 1,
+            "p": 0.7148478690835236,
+            "p_holm": 1.0,
+            "cause": 1
+          },
+          {
+            "variable": "mortgage_insurance_percentage",
+            "chi2": 1.3502582995206966,
+            "df": 1,
+            "p": 0.2452329656178536,
+            "p_holm": 1.0,
+            "cause": 1
+          },
+          {
+            "variable": "original_dti__missing",
+            "chi2": 36.668822123136614,
+            "df": 1,
+            "p": 1.4000071140280763e-09,
+            "p_holm": 2.3800120938477297e-08,
+            "cause": 1
+          },
+          {
+            "variable": "occupancy_status__I",
+            "chi2": 0.08118769819603731,
+            "df": 1,
+            "p": 0.7756942850246318,
+            "p_holm": 1.0,
+            "cause": 1
+          },
+          {
+            "variable": "occupancy_status__S",
+            "chi2": 0.05108923749722554,
+            "df": 1,
+            "p": 0.8211786438314046,
+            "p_holm": 1.0,
+            "cause": 1
+          },
+          {
+            "variable": "loan_purpose__C",
+            "chi2": 7.584271517724651,
+            "df": 1,
+            "p": 0.005887975301304091,
+            "p_holm": 0.0706557036156491,
+            "cause": 1
+          },
+          {
+            "variable": "loan_purpose__N",
+            "chi2": 7.218104129641392,
+            "df": 1,
+            "p": 0.007217189473972115,
+            "p_holm": 0.07938908421369326,
+            "cause": 1
+          },
+          {
+            "variable": "property_type__CO",
+            "chi2": 0.7058127135150797,
+            "df": 1,
+            "p": 0.4008374040767857,
+            "p_holm": 1.0,
+            "cause": 1
+          },
+          {
+            "variable": "property_type__PU",
+            "chi2": 0.43705713414366265,
+            "df": 1,
+            "p": 0.5085462821092916,
+            "p_holm": 1.0,
+            "cause": 1
+          },
+          {
+            "variable": "first_time_homebuyer_indicator__Y",
+            "chi2": 0.02432451722798675,
+            "df": 1,
+            "p": 0.8760620347264635,
+            "p_holm": 1.0,
+            "cause": 1
+          },
+          {
+            "variable": "number_of_units__2",
+            "chi2": 0.5757224536729573,
+            "df": 1,
+            "p": 0.4479938839666545,
+            "p_holm": 1.0,
+            "cause": 1
+          },
+          {
+            "variable": "number_of_borrowers__1",
+            "chi2": 2.65188659915868,
+            "df": 1,
+            "p": 0.1034270831326342,
+            "p_holm": 1.0,
+            "cause": 1
+          },
+          {
+            "variable": "classic_fico_score__rcs",
+            "chi2": 15.762584859198316,
+            "df": 1,
+            "p": 7.180865055883306e-05,
+            "p_holm": 0.0010053211078236628,
+            "cause": 1
+          }
+        ],
+        [
+          {
+            "variable": "GLOBAL",
+            "chi2": 483.18108254125815,
+            "df": 18,
+            "p": 3.566494000677431e-91,
+            "p_holm": null,
+            "cause": 2
+          },
+          {
+            "variable": "classic_fico_score",
+            "chi2": 5.317858457053353,
+            "df": 1,
+            "p": 0.021107937338782964,
+            "p_holm": 0.14775556137148074,
+            "cause": 2
+          },
+          {
+            "variable": "original_dti",
+            "chi2": 21.24214023582708,
+            "df": 1,
+            "p": 4.047667322503326e-06,
+            "p_holm": 4.4524340547536584e-05,
+            "cause": 2
+          },
+          {
+            "variable": "original_ltv",
+            "chi2": 33.69935946095985,
+            "df": 1,
+            "p": 6.432186406204542e-09,
+            "p_holm": 7.71862368744545e-08,
+            "cause": 2
+          },
+          {
+            "variable": "original_interest_rate",
+            "chi2": 160.63802343057995,
+            "df": 1,
+            "p": 8.20823125780373e-37,
+            "p_holm": 1.4774816264046712e-35,
+            "cause": 2
+          },
+          {
+            "variable": "original_upb",
+            "chi2": 88.0799364872746,
+            "df": 1,
+            "p": 6.286202630452623e-21,
+            "p_holm": 1.0686544471769458e-19,
+            "cause": 2
+          },
+          {
+            "variable": "original_loan_term",
+            "chi2": 60.59736835529425,
+            "df": 1,
+            "p": 7.002756502704754e-15,
+            "p_holm": 1.050413475405713e-13,
+            "cause": 2
+          },
+          {
+            "variable": "mortgage_insurance_percentage",
+            "chi2": 37.770765444241455,
+            "df": 1,
+            "p": 7.956524308263936e-10,
+            "p_holm": 1.0343481600743116e-08,
+            "cause": 2
+          },
+          {
+            "variable": "original_dti__missing",
+            "chi2": 20.716297568316026,
+            "df": 1,
+            "p": 5.326075573643948e-06,
+            "p_holm": 5.326075573643948e-05,
+            "cause": 2
+          },
+          {
+            "variable": "occupancy_status__I",
+            "chi2": 11.776337359774558,
+            "df": 1,
+            "p": 0.0005998839930879362,
+            "p_holm": 0.005398955937791426,
+            "cause": 2
+          },
+          {
+            "variable": "occupancy_status__S",
+            "chi2": 1.5208481688133904,
+            "df": 1,
+            "p": 0.21749118513545745,
+            "p_holm": 1.0,
+            "cause": 2
+          },
+          {
+            "variable": "loan_purpose__C",
+            "chi2": 74.7256280673978,
+            "df": 1,
+            "p": 5.408939905622922e-18,
+            "p_holm": 8.654303848996675e-17,
+            "cause": 2
+          },
+          {
+            "variable": "loan_purpose__N",
+            "chi2": 1.6979388755321578,
+            "df": 1,
+            "p": 0.1925577479721076,
+            "p_holm": 1.0,
+            "cause": 2
+          },
+          {
+            "variable": "property_type__CO",
+            "chi2": 10.546731087042131,
+            "df": 1,
+            "p": 0.0011639375811331018,
+            "p_holm": 0.009311500649064814,
+            "cause": 2
+          },
+          {
+            "variable": "property_type__PU",
+            "chi2": 0.2581923509831464,
+            "df": 1,
+            "p": 0.6113647623836009,
+            "p_holm": 1.0,
+            "cause": 2
+          },
+          {
+            "variable": "first_time_homebuyer_indicator__Y",
+            "chi2": 49.49247693817184,
+            "df": 1,
+            "p": 1.991338851503234e-12,
+            "p_holm": 2.7878743921045275e-11,
+            "cause": 2
+          },
+          {
+            "variable": "number_of_units__2",
+            "chi2": 1.0842520884780928,
+            "df": 1,
+            "p": 0.2977482784857361,
+            "p_holm": 1.0,
+            "cause": 2
+          },
+          {
+            "variable": "number_of_borrowers__1",
+            "chi2": 1.7936794009716888,
+            "df": 1,
+            "p": 0.1804785065824241,
+            "p_holm": 1.0,
+            "cause": 2
+          },
+          {
+            "variable": "classic_fico_score__rcs",
+            "chi2": 1.8597083045731535,
+            "df": 1,
+            "p": 0.1726584698698095,
+            "p_holm": 1.0,
+            "cause": 2
+          }
+        ]
+      ],
+      "limitation": "Remaining non-PH is disclosed; selected specification is a working model, not proof of PH.",
+      "next_stage": "P5",
+      "reproduced_in_P6_UTC": "2026-11-14T02:44:56.478823+00:00"
+    },
+    "P5": {
+      "status": "PASS WITH LIMITATIONS",
+      "specification_locked_before_holdout_UTC": "2026-11-14T02:42:40.270305+00:00",
+      "functional": "B_FICO_RCS",
+      "time_effects": "static",
+      "selection_uses_legacy_test": false,
+      "completed_utc": "2026-11-13T21:40:27.216774+00:00",
+      "probability_invariants": {
+        "min": 3.662796769234788e-05,
+        "max_sum_error": 1.7763568394002505e-15,
+        "monotone": true
+      },
+      "metrics": [
+        {
+          "horizon": 12,
+          "landmark": 0,
+          "n": 11784,
+          "test_cause1": 14,
+          "known_status": 11784,
+          "censored_before_or_at_h": 0,
+          "effective_sample_size": 11784.0,
+          "max_weight": 1.0,
+          "weight_sum_over_n": 1.0,
+          "mean_predicted": 0.0014008921938381239,
+          "observed_AJ": 0.0011880515953835713,
+          "calibration_difference": 0.00021284059845455257,
+          "observed_expected": 0.8480678246400831,
+          "intercept": 1.197011336781761,
+          "slope": 1.2215627787879422,
+          "calibration_fit_ok": true,
+          "joint_intercept": 1.197011336781761,
+          "joint_slope": 1.2215627787879422,
+          "CITL_offset": -0.1651981280457543,
+          "cif_auc": 0.7665250637213255,
+          "brier": 0.001184637131015828,
+          "benchmark_predicted": 0.0014382402707275802,
+          "benchmark_brier": 0.0011867027231635477,
+          "brier_improvement": 2.0655921477196262e-06,
+          "mean_predicted_low": 0.0013776558410941435,
+          "mean_predicted_high": 0.0014220420966927815,
+          "observed_AJ_low": 0.0005940257976917853,
+          "observed_AJ_high": 0.0018690597420230833,
+          "calibration_difference_low": -0.00046754610088192076,
+          "calibration_difference_high": 0.0008224513356930082,
+          "observed_expected_low": 0.41936861385760893,
+          "observed_expected_high": 1.3336176289794386,
+          "brier_low": 0.0005935248081819507,
+          "brier_high": 0.0018633256833393,
+          "benchmark_brier_low": 0.0005943856291199452,
+          "benchmark_brier_high": 0.0018657519631206786,
+          "brier_improvement_low": -9.563616282490916e-07,
+          "brier_improvement_high": 5.38881269845991e-06,
+          "intercept_low": -3.3567903542253283,
+          "intercept_high": 5.700016854773064,
+          "slope_low": 0.5141369635715537,
+          "slope_high": 1.9761011336204861,
+          "CITL_offset_low": -0.8705724110023896,
+          "CITL_offset_high": 0.28873866329568326,
+          "cif_auc_low": 0.6172378521409067,
+          "cif_auc_high": 0.8553610515201423,
+          "bootstrap_success": 200,
+          "calibration_bootstrap_success": 200,
+          "offset_bootstrap_success": 200
+        },
+        {
+          "horizon": 36,
+          "landmark": 0,
+          "n": 11784,
+          "test_cause1": 110,
+          "known_status": 11784,
+          "censored_before_or_at_h": 0,
+          "effective_sample_size": 11784.0,
+          "max_weight": 1.0,
+          "weight_sum_over_n": 1.0,
+          "mean_predicted": 0.008683520087650765,
+          "observed_AJ": 0.009334691106585202,
+          "calibration_difference": -0.0006511710189344364,
+          "observed_expected": 1.0749892914810546,
+          "intercept": 1.8127806497058234,
+          "slope": 1.405641398255005,
+          "calibration_fit_ok": true,
+          "joint_intercept": 1.8127806497058234,
+          "joint_slope": 1.405641398255005,
+          "CITL_offset": 0.07352883265995791,
+          "cif_auc": 0.8006253212266575,
+          "brier": 0.009122525696928731,
+          "benchmark_predicted": 0.00874224478285392,
+          "benchmark_brier": 0.009247905641176342,
+          "brier_improvement": 0.00012537994424761077,
+          "mean_predicted_low": 0.008550106723520383,
+          "mean_predicted_high": 0.008814165981246543,
+          "observed_AJ_low": 0.007807196198234897,
+          "observed_AJ_high": 0.011125254582484721,
+          "calibration_difference_low": -0.0023406631663502727,
+          "calibration_difference_high": 0.0008143471278312879,
+          "observed_expected_low": 0.9065540073637719,
+          "observed_expected_high": 1.2664568925183677,
+          "brier_low": 0.007668208216962206,
+          "brier_high": 0.010868143647430455,
+          "benchmark_brier_low": 0.007747118201612761,
+          "benchmark_brier_high": 0.01100716202866477,
+          "brier_improvement_low": 7.576920235385942e-05,
+          "brier_improvement_high": 0.00017664390231560606,
+          "intercept_low": 0.7589323057944469,
+          "intercept_high": 2.791315934450792,
+          "slope_low": 1.1629988689903832,
+          "slope_high": 1.6286241775574881,
+          "CITL_offset_low": -0.0996478104493653,
+          "CITL_offset_high": 0.2405744595843478,
+          "cif_auc_low": 0.7624413329814619,
+          "cif_auc_high": 0.8358072180889873,
+          "bootstrap_success": 200,
+          "calibration_bootstrap_success": 200,
+          "offset_bootstrap_success": 200
+        },
+        {
+          "horizon": 60,
+          "landmark": 0,
+          "n": 11784,
+          "test_cause1": 324,
+          "known_status": 11784,
+          "censored_before_or_at_h": 0,
+          "effective_sample_size": 11784.0,
+          "max_weight": 1.0,
+          "weight_sum_over_n": 1.0,
+          "mean_predicted": 0.026168791057165613,
+          "observed_AJ": 0.0274949083503055,
+          "calibration_difference": -0.0013261172931398856,
+          "observed_expected": 1.0506755275871549,
+          "intercept": 0.8738454826192814,
+          "slope": 1.2533742988377234,
+          "calibration_fit_ok": true,
+          "joint_intercept": 0.8738454826192814,
+          "joint_slope": 1.2533742988377234,
+          "CITL_offset": 0.05188845969791308,
+          "cif_auc": 0.7719256996962058,
+          "brier": 0.025962113278529732,
+          "benchmark_predicted": 0.026254935138183864,
+          "benchmark_brier": 0.02674047589868057,
+          "brier_improvement": 0.0007783626201508381,
+          "mean_predicted_low": 0.025790553777951163,
+          "mean_predicted_high": 0.026565009344367344,
+          "observed_AJ_low": 0.024690257976917856,
+          "observed_AJ_high": 0.030380176510522747,
+          "calibration_difference_low": -0.0041529966284260394,
+          "calibration_difference_high": 0.0012973182231945774,
+          "observed_expected_low": 0.9494590302031678,
+          "observed_expected_high": 1.1578752958798173,
+          "brier_low": 0.02336153916436191,
+          "brier_high": 0.028522728025183155,
+          "benchmark_brier_low": 0.024083097352570092,
+          "benchmark_brier_high": 0.029474239002092287,
+          "brier_improvement_low": 0.0005228224637874336,
+          "brier_improvement_high": 0.0009745610153833649,
+          "intercept_low": 0.34367999493992474,
+          "intercept_high": 1.294592217730847,
+          "slope_low": 1.1019467093146849,
+          "slope_high": 1.3886771484350187,
+          "CITL_offset_low": -0.05428984978606974,
+          "CITL_offset_high": 0.15426396173847506,
+          "cif_auc_low": 0.7472957097564906,
+          "cif_auc_high": 0.7933490019021741,
+          "bootstrap_success": 200,
+          "calibration_bootstrap_success": 200,
+          "offset_bootstrap_success": 200
+        },
+        {
+          "horizon": 120,
+          "landmark": 0,
+          "n": 11784,
+          "test_cause1": 478,
+          "known_status": 11779,
+          "censored_before_or_at_h": 5,
+          "effective_sample_size": 11778.993064845656,
+          "max_weight": 1.0018362352723773,
+          "weight_sum_over_n": 1.0000002691468566,
+          "mean_predicted": 0.04018180444249861,
+          "observed_AJ": 0.04056418955983425,
+          "calibration_difference": -0.0003823851173356402,
+          "observed_expected": 1.0095163749523206,
+          "intercept": 0.3601635767778618,
+          "slope": 1.122730257630102,
+          "calibration_fit_ok": true,
+          "joint_intercept": 0.3601635767778618,
+          "joint_slope": 1.122730257630102,
+          "CITL_offset": 0.010092968647138757,
+          "cif_auc": 0.7452719341657706,
+          "brier": 0.03756167672244776,
+          "benchmark_predicted": 0.0405531703408635,
+          "benchmark_brier": 0.03891876830579694,
+          "brier_improvement": 0.0013570915833491862,
+          "mean_predicted_low": 0.039593342711562965,
+          "mean_predicted_high": 0.040791836592088855,
+          "observed_AJ_low": 0.03740355171519715,
+          "observed_AJ_high": 0.04421419202231597,
+          "calibration_difference_low": -0.003995416803010806,
+          "calibration_difference_high": 0.0032786426382315453,
+          "observed_expected_low": 0.9177777428585205,
+          "observed_expected_high": 1.0995472641574622,
+          "brier_low": 0.034748627861541065,
+          "brier_high": 0.04069210057441667,
+          "benchmark_brier_low": 0.03601366193489795,
+          "benchmark_brier_high": 0.042272014550518086,
+          "brier_improvement_low": 0.0009580586467973917,
+          "brier_improvement_high": 0.0017104746395627396,
+          "intercept_low": 0.06341454066618457,
+          "intercept_high": 0.6932628967679145,
+          "slope_low": 1.0140169125966365,
+          "slope_high": 1.235184106673152,
+          "CITL_offset_low": -0.09196170905501538,
+          "CITL_offset_high": 0.10229903178498619,
+          "cif_auc_low": 0.7267904631681269,
+          "cif_auc_high": 0.7656651965495894,
+          "bootstrap_success": 200,
+          "calibration_bootstrap_success": 200,
+          "offset_bootstrap_success": 200
+        }
+      ],
+      "concordance": {
+        "c_index": 0.7659834591479415,
+        "comparable_pairs": 3650477.0,
+        "low": 0.7478224718885969,
+        "high": 0.7856993189524509,
+        "bootstrap_success": 200
+      },
+      "boundary_groups": [
+        {
+          "horizon": 12,
+          "landmark": 0,
+          "quintile": 2,
+          "n": 2357,
+          "predicted": 0.000588023545105866,
+          "observed": 0.0,
+          "cause1_events_h": 0,
+          "unknown_h": 0,
+          "observed_low": 0.0,
+          "observed_high": 0.0015638499256655242,
+          "CI_method": "exact binomial boundary; all horizon outcomes observed",
+          "bootstrap_degenerate": true
+        }
+      ],
+      "direct_PI_sensitivity": [
+        {
+          "horizon": 12,
+          "mean_CIF1_exponential": 0.0014008921938381239,
+          "mean_CIF1_direct": 0.0014061219207883657,
+          "max_abs_individual_CIF1_delta": 0.00011651025831486451,
+          "Brier_direct": 0.0011846432650506388
+        },
+        {
+          "horizon": 36,
+          "mean_CIF1_exponential": 0.008683520087650765,
+          "mean_CIF1_direct": 0.008720035489299541,
+          "max_abs_individual_CIF1_delta": 0.0005371603543860015,
+          "Brier_direct": 0.009122314963710484
+        },
+        {
+          "horizon": 60,
+          "mean_CIF1_exponential": 0.026168791057165613,
+          "mean_CIF1_direct": 0.02636333480186066,
+          "max_abs_individual_CIF1_delta": 0.0035539262554810658,
+          "Brier_direct": 0.02595958961753695
+        },
+        {
+          "horizon": 120,
+          "mean_CIF1_exponential": 0.04018180444249861,
+          "mean_CIF1_direct": 0.04044836579170728,
+          "max_abs_individual_CIF1_delta": 0.0037069894187319874,
+          "Brier_direct": 0.037560396097210715
+        }
+      ],
+      "common_admin_support_120": [
+        {
+          "horizon": 120,
+          "landmark": 0,
+          "n": 11767,
+          "test_cause1": 478,
+          "known_status": 11767,
+          "censored_before_or_at_h": 0,
+          "effective_sample_size": 11767.0,
+          "max_weight": 1.0,
+          "weight_sum_over_n": 1.0,
+          "mean_predicted": 0.0401975671457984,
+          "observed_AJ": 0.040622078694654604,
+          "calibration_difference": -0.00042451154885620596,
+          "observed_expected": 1.0105606278936354,
+          "intercept": 0.360065048798401,
+          "slope": 1.1222800736880247,
+          "calibration_fit_ok": true,
+          "joint_intercept": 0.360065048798401,
+          "joint_slope": 1.1222800736880247,
+          "CITL_offset": 0.011290176665004365,
+          "cif_auc": 0.7451816501493104,
+          "brier": 0.037612840754189705,
+          "benchmark_predicted": 0.040572590208368675,
+          "benchmark_brier": 0.038971927866290106,
+          "brier_improvement": 0.0013590871121004003
+        }
+      ],
+      "individual_prediction_rows": 188976,
+      "individual_prediction_loans": 47244,
+      "prediction_scope": "all cohort L=0; training and reused internal holdout labeled; late entries excluded from FPD-origin ranking",
+      "baseline_final_paired_Brier": [
+        {
+          "horizon": 12,
+          "baseline_minus_final_Brier": 1.1233492654724557e-07,
+          "low": -2.908136012928439e-07,
+          "high": 5.043122349603905e-07
+        },
+        {
+          "horizon": 36,
+          "baseline_minus_final_Brier": 3.5443093598756803e-07,
+          "low": -9.988367356147768e-06,
+          "high": 7.866416851939418e-06
+        },
+        {
+          "horizon": 60,
+          "baseline_minus_final_Brier": 3.144204538253065e-05,
+          "low": -4.7346652797095185e-06,
+          "high": 6.693257127268656e-05
+        },
+        {
+          "horizon": 120,
+          "baseline_minus_final_Brier": 3.0473505185098226e-05,
+          "low": -2.4410547560473236e-05,
+          "high": 8.743635237211113e-05
+        }
+      ],
+      "tests_passed": 12,
+      "next_stage": "P6",
+      "common_support_rule": "potential administrative censoring age >120, strict because censoring at horizon has unknown outcome in the declared IPCW convention",
+      "original_selection_lock_UTC": "2026-11-13T21:38:33.488964+00:00",
+      "reproduced_in_P6_UTC": "2026-11-14T02:44:56.478823+00:00"
+    },
+    "P6": {
+      "status": "PASS WITH LIMITATIONS",
+      "completed_utc": "2026-11-14T02:45:33.738310+00:00",
+      "fresh_code_cells": 23,
+      "tests_run": 52,
+      "figures": 25,
+      "required_tables": [
+        "cohort_flow",
+        "cohort_exclusions",
+        "descriptive_statistics",
+        "cox_coefficients",
+        "ph_score_tests",
+        "functional_form_scores",
+        "cause_specific_concordance",
+        "primary_validation",
+        "primary_calibration",
+        "landmark12_validation",
+        "sensitivity_coefficients",
+        "sensitivity_cohort_changes",
+        "sensitivity_metrics",
+        "individual_predictions",
+        "hazard_contrasts",
+        "model_development_comparison"
+      ],
+      "baseline_archive_byte_identical": true,
+      "single_command": "python src/reproduce.py",
+      "verification": "artifacts/verification.json",
+      "revision_inventory": {
+        "modified_functions": {
+          "src/cox_model.py": [
+            "CoxFit",
+            "CoxFit.static_columns",
+            "CoxFit.coefficient_table",
+            "model_design",
+            "reference_rows",
+            "hazard_contrasts",
+            "fit_models",
+            "time_risk_moments",
+            "time_likelihood",
+            "fit_time_varying",
+            "predict_cif"
+          ],
+          "src/evaluation.py": [
+            "specification_encoder",
+            "internal_folds",
+            "development_losses",
+            "functional_experiments",
+            "time_diagnostics",
+            "time_experiments",
+            "concordance",
+            "calibration_coefficients",
+            "calibration_offset",
+            "cif_auc",
+            "individual_predictions",
+            "validate",
+            "diagnostics",
+            "functional_form_scores"
+          ],
+          "src/preprocessing.py": [
+            "rcs_component",
+            "audit_sources",
+            "build_cohort",
+            "Encoder",
+            "Encoder._matrix",
+            "Encoder.with_rcs",
+            "Encoder.manifest"
+          ],
+          "src/reproduce.py": [
+            "sha",
+            "clean",
+            "write_json",
+            "markdown_table",
+            "revision_inventory",
+            "render_checkpoints",
+            "main"
+          ]
+        },
+        "modified_notebook_source_cells_from_original": [
+          0,
+          1,
+          2,
+          3,
+          6,
+          7,
+          8,
+          10,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          30,
+          31,
+          32,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40
+        ],
+        "basis": "original baseline Git commit; output/metadata-only changes excluded from cell list"
+      },
+      "remaining_limits": "non-PH, calibration slope, observed-only scope, conditional uncertainty, reused holdout, no external generalization"
+    }
+  },
+  "execution_policy": {
+    "mode": "autonomous sequential P2 through P6",
+    "authority": "Researcher execution policy update in current conversation",
+    "legacy_test_selection_forbidden": true,
+    "commit_push_authorized": false
+  },
+  "accepted_P1_build_cohort_sha256": "37f1b166c0c35d7f723b696f127088444c02a72c9c1644f83a06dc15eaaf0c6d",
+  "baseline_preservation_policy": "frozen baseline_bundle.pkl plus original Git commit for historical outputs",
+  "baseline_bundle_sha256": "73e6095079b4f3a6009524cee0be63abfe9a3ce498cf2a7efc790792dca22f82",
+  "final_baseline_comparison": {
+    "created_utc": "2026-11-14T02:53:25.386979+00:00",
+    "source": "frozen original baseline_bundle.pkl versus completed P6 research_bundle.pkl",
+    "original_baseline_sha256": "73e6095079b4f3a6009524cee0be63abfe9a3ce498cf2a7efc790792dca22f82",
+    "revised_bundle_sha256": "0af34a2e75bfb9e10fec1ce48e557259bdfa3370a4d0f0f3af6f60331cf19401",
+    "horizon_metrics": [
+      {
+        "horizon": 12,
+        "original_mean_CIF1": 0.0013976988738146393,
+        "revised_mean_CIF1": 0.0014008921938381239,
+        "original_Brier": 0.0011847494659423753,
+        "linear_P1_Brier": 0.0011847494659423753,
+        "revised_Brier": 0.001184637131015828,
+        "original_CIF_AUC": 0.7599708702512441,
+        "revised_CIF_AUC": 0.7665250637213255
+      },
+      {
+        "horizon": 36,
+        "original_mean_CIF1": 0.008657014154434277,
+        "revised_mean_CIF1": 0.008683520087650765,
+        "original_Brier": 0.009122880127864719,
+        "linear_P1_Brier": 0.009122880127864719,
+        "revised_Brier": 0.009122525696928731,
+        "original_CIF_AUC": 0.8024413225972246,
+        "revised_CIF_AUC": 0.8006253212266575
+      },
+      {
+        "horizon": 60,
+        "original_mean_CIF1": 0.02602161708952549,
+        "revised_mean_CIF1": 0.026168791057165613,
+        "original_Brier": 0.025993555323912263,
+        "linear_P1_Brier": 0.025993555323912263,
+        "revised_Brier": 0.025962113278529732,
+        "original_CIF_AUC": 0.7722076788830715,
+        "revised_CIF_AUC": 0.7719256996962058
+      },
+      {
+        "horizon": 120,
+        "original_mean_CIF1": 0.039896526617903674,
+        "revised_mean_CIF1": 0.04018180444249861,
+        "original_Brier": 0.037592150227632855,
+        "linear_P1_Brier": 0.037592150227632855,
+        "revised_Brier": 0.03756167672244776,
+        "original_CIF_AUC": 0.7459290105314794,
+        "revised_CIF_AUC": 0.7452719341657706
+      }
+    ],
+    "original_C_index": {
+      "c_index": 0.7665008075632628,
+      "comparable_pairs": 3650488.0,
+      "low": 0.7490906699260724,
+      "high": 0.7865535486480274,
+      "bootstrap_success": 200
+    },
+    "linear_on_P1_C_index": {
+      "c_index": 0.7665011997062302,
+      "comparable_pairs": 3650477.0
+    },
+    "revised_C_index": {
+      "c_index": 0.7659834591479415,
+      "comparable_pairs": 3650477.0,
+      "low": 0.7478224718885969,
+      "high": 0.7856993189524509,
+      "bootstrap_success": 200
+    },
+    "original_parameters": {
+      "1": 17,
+      "2": 17
+    },
+    "revised_parameters": {
+      "1": 18,
+      "2": 18
+    },
+    "train_test_IDs_unchanged": true,
+    "original_Brier_equals_P1_linear_Brier_at_declared_horizons": true,
+    "original_person_months": 3338772,
+    "revised_person_months": 3338768,
+    "timing_limit_known_ZB_effective_exits_after_last_report_n": 32,
+    "approved_event_clock_unchanged": true,
+    "model_refit": false,
+    "model_reselection": false,
+    "legacy_test_used_for_selection": false,
+    "warning": "Descriptive comparison of related but differently defined event processes; no claim of predictive superiority or PH/calibration adequacy."
+  }
+}

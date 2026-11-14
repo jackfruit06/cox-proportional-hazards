@@ -1,5 +1,5 @@
 {
-  "run_utc": "2026-11-13T19:10:28.770280+00:00",
+  "run_utc": "2026-11-14T03:54:38.884831+00:00",
   "seed_split": 20261114,
   "seed_bootstrap": 20261115,
   "bootstrap_replicates": 200,
@@ -33,9 +33,10 @@
     }
   },
   "source_code_sha256": {
-    "cox_model.py": "efa3e75862a68db1a53daeb464d1b992f9e3194b2194296f920ea681a42ec289",
-    "evaluation.py": "ce49d3c7e46ca685b4647b437d93e2a0359454a2d945a3405cfcf956274e99d8",
-    "preprocessing.py": "239218eff7285fb19d240f4a2b3df7d58551bb19e4f8fd79dbe787e33ef707df"
+    "cox_model.py": "ded54a7d69b2efffd315070695cfc45263d151ce8177f938aedb609dac116e49",
+    "evaluation.py": "b6aade7afdab38b85df00bf64141801189cab162f26447f0dc26b048cb398ad3",
+    "preprocessing.py": "83e176d013f3f75bba50cf55f28d24869e9eb41803b6984d68e6f13ff666d2ac",
+    "reproduce.py": "a864d75d377d306802051ba7424eb960af9462cdd7eb4dba157f252f74bcd3b6"
   },
   "n_raw": 50000,
   "n_cohort": 49980,
@@ -46,21 +47,62 @@
     "0": 10656,
     "1": 2019
   },
+  "cause2_source_counts": {
+    "ZB": 37304,
+    "RA": 1
+  },
   "entry_late": 2736,
   "fit_warnings": {
     "1": [],
     "2": []
   },
+  "specification": {
+    "functional": "B_FICO_RCS",
+    "time": "static",
+    "parameters": {
+      "1": 18,
+      "2": 18
+    },
+    "knots": {
+      "classic_fico_score": [
+        683.0,
+        760.0,
+        803.0
+      ]
+    }
+  },
+  "selection_locked_before_holdout_UTC": "2026-11-14T03:52:08.112307+00:00",
+  "holdout_label": "reused internal holdout; final descriptive evaluation",
   "checks": {
     "one_row_per_loan": true,
     "strict_entry_exit": true,
     "train_test_disjoint": true,
     "train_only_preprocessing": true,
-    "finite_cox_coefficients": true,
-    "score_verified": true,
-    "information_verified": true,
-    "valid_monotone_cif_sum_to_one": true,
-    "raw_copies_match": true
+    "finite_coefficients": true,
+    "converged_scores": true,
+    "probability_sum": true,
+    "monotone_cif": true,
+    "raw_copies_match": true,
+    "no_selection_on_legacy_test": true
   },
-  "figures": 24
+  "figures": 25,
+  "required_tables": [
+    "cohort_flow",
+    "cohort_exclusions",
+    "descriptive_statistics",
+    "cox_coefficients",
+    "ph_score_tests",
+    "functional_form_scores",
+    "cause_specific_concordance",
+    "primary_validation",
+    "primary_calibration",
+    "landmark12_validation",
+    "sensitivity_coefficients",
+    "sensitivity_cohort_changes",
+    "sensitivity_metrics",
+    "individual_predictions",
+    "hazard_contrasts",
+    "model_development_comparison"
+  ],
+  "individual_prediction_scope": "all cohort L=0, training/holdout labels, no cross-entry ranking"
 }

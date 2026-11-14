@@ -1,5 +1,10 @@
 [
   {
+    "name": "time_effects",
+    "path": "outputs/diagnostics/time_effects.png",
+    "purpose": "Targeted time effects, HR(t) and CI; selection uses training criteria only"
+  },
+  {
     "name": "cohort_flow",
     "path": "outputs/eda/cohort_flow.png",
     "purpose": "Dòng cohort, các lý do loại và ba kết cục"
@@ -117,6 +122,6 @@
   {
     "name": "fico_functional_form",
     "path": "outputs/model/fico_functional_form.png",
-    "purpose": "Đặc tả tuyến tính và bậc hai cho FICO khác nhau ở đâu"
+    "purpose": "Targeted nonlinear shapes: FICO both causes, LTV/UPB Cause 2, with joint model CI"
   }
 ]

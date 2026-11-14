@@ -74,9 +74,17 @@
     "property_type__PU",
     "first_time_homebuyer_indicator__Y",
     "number_of_units__2",
-    "number_of_borrowers__1"
+    "number_of_borrowers__1",
+    "classic_fico_score__rcs"
   ],
   "dropped_constant": [],
   "quadratic_fico": false,
+  "spline_knots": {
+    "classic_fico_score": [
+      683.0,
+      760.0,
+      803.0
+    ]
+  },
   "training_id_sha256": "836182667928095659d6748509ada43fd3cd6c80d404c37946e2280491dc266b"
 }

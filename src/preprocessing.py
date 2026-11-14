@@ -46,6 +46,21 @@ CATEGORIES = {
 }
 
 
+def rcs_component(values, knots):
+    """One nonlinear component of a three-knot restricted cubic spline.
+
+    The linear component is retained separately. Units match the input; tails
+    are linear. Knots must be learned from the relevant training partition.
+    """
+    k1, k2, k3 = np.asarray(knots, float)
+    if not k1 < k2 < k3:
+        raise ValueError('RCS requires three distinct increasing knots')
+    x = np.asarray(values, float)
+    return (np.maximum(x-k1, 0.)**3
+            -(k3-k1)/(k3-k2)*np.maximum(x-k2, 0.)**3
+            +(k2-k1)/(k3-k2)*np.maximum(x-k3, 0.)**3)/(k3-k1)**2
+
+
 def month(value: str) -> int:
     """Calendar month index; no silent coercion of malformed YYYYMM."""
     if len(value) != 6 or not value.isdigit():
@@ -128,62 +143,63 @@ def audit_sources(root: Path):
                'modification_flag','payment_deferral_flag','borrower_assistance_plan'] if c in ix}
     histories, seen, nrows = [], set(), 0
     active, h, previous = None, None, None
-    for row in csv.reader((root/'data/sample_perf_2015.txt').open(encoding='utf-8', newline=''), delimiter='|'):
-        nrows += 1
-        if len(row) != len(columns):
-            raise ValueError(f'Performance line {nrows}: {len(row)} fields')
-        row = [x.strip() for x in row]
-        loan = row[0]
-        if loan != active:
-            if h is not None:
-                histories.append(h)
-            if loan in seen:
-                raise ValueError('Noncontiguous repeated loan block: '+loan)
-            seen.add(loan)
-            active, previous = loan, None
-            h = dict(loan_identifier=loan, n_months=0, first_month=month(row[1]),
-                     last_month=month(row[1]), first_upb=float(row[2]), first_zb=row[8],
-                     first_status=row[3], event_month=np.nan, zb_report_month=np.nan,
-                     zb_effective_month=np.nan, zb_code='', gaps=0, missing_months=0,
-                     records_after_zb=0, age_disagreements=0, unknown_status_months=0,
-                     first_unknown_month=np.nan, first_ra_month=np.nan)
-        t = month(row[1])
-        if previous is not None:
-            if t <= previous:
-                raise ValueError(f'Duplicate or out-of-order performance month: {loan} {row[1]}')
-            if t > previous+1:
-                h['gaps'] += 1
-                h['missing_months'] += t-previous-1
-        if np.isfinite(h['zb_report_month']) and t > h['zb_report_month']:
-            h['records_after_zb'] += 1
-        previous = t
-        h['last_month'], h['n_months'] = t, h['n_months']+1
-        for c in domains:
-            domains[c][row[ix[c]]] += 1
-        s, z, zd = row[3], row[8], row[9]
-        if s.isdigit() and 0 <= int(s) <= 99:
-            if int(s) >= 3 and not np.isfinite(h['event_month']):
-                h['event_month'] = t
-        elif s in {'XX', ''}:
-            h['unknown_status_months'] += 1
-            if not np.isfinite(h['first_unknown_month']):
-                h['first_unknown_month'] = t
-        elif s == 'RA':
-            if not np.isfinite(h['first_ra_month']):
-                h['first_ra_month'] = t
-        else:
-            raise ValueError(f'Unknown delinquency code {s!r} at {loan}')
-        if z and z not in ZB_CODES:
-            raise ValueError(f'Unknown Zero Balance Code {z!r}')
-        if bool(z) != bool(zd):
-            raise ValueError(f'Zero Balance Code/date incomplete: {loan}')
-        if z:
-            effective = month(zd)
-            if not np.isfinite(h['zb_report_month']):
-                h['zb_report_month'], h['zb_effective_month'], h['zb_code'] = t, effective, z
-        # Age is only a consistency audit, not the analysis clock (modifications can reset age).
-        if loan in orig.index and not row[7]:
-            h['age_disagreements'] += int(int(row[4]) != t-orig.at[loan, 'first_payment_date_month']+1)
+    with (root/'data/sample_perf_2015.txt').open(encoding='utf-8', newline='') as performance_file:
+        for row in csv.reader(performance_file, delimiter='|'):
+            nrows += 1
+            if len(row) != len(columns):
+                raise ValueError(f'Performance line {nrows}: {len(row)} fields')
+            row = [x.strip() for x in row]
+            loan = row[0]
+            if loan != active:
+                if h is not None:
+                    histories.append(h)
+                if loan in seen:
+                    raise ValueError('Noncontiguous repeated loan block: '+loan)
+                seen.add(loan)
+                active, previous = loan, None
+                h = dict(loan_identifier=loan, n_months=0, first_month=month(row[1]),
+                         last_month=month(row[1]), first_upb=float(row[2]), first_zb=row[8],
+                         first_status=row[3], event_month=np.nan, zb_report_month=np.nan,
+                         zb_effective_month=np.nan, zb_code='', gaps=0, missing_months=0,
+                         records_after_zb=0, age_disagreements=0, unknown_status_months=0,
+                         first_unknown_month=np.nan, first_ra_month=np.nan)
+            t = month(row[1])
+            if previous is not None:
+                if t <= previous:
+                    raise ValueError(f'Duplicate or out-of-order performance month: {loan} {row[1]}')
+                if t > previous+1:
+                    h['gaps'] += 1
+                    h['missing_months'] += t-previous-1
+            if np.isfinite(h['zb_report_month']) and t > h['zb_report_month']:
+                h['records_after_zb'] += 1
+            previous = t
+            h['last_month'], h['n_months'] = t, h['n_months']+1
+            for c in domains:
+                domains[c][row[ix[c]]] += 1
+            s, z, zd = row[3], row[8], row[9]
+            if s.isdigit() and 0 <= int(s) <= 99:
+                if int(s) >= 3 and not np.isfinite(h['event_month']):
+                    h['event_month'] = t
+            elif s in {'XX', ''}:
+                h['unknown_status_months'] += 1
+                if not np.isfinite(h['first_unknown_month']):
+                    h['first_unknown_month'] = t
+            elif s == 'RA':
+                if not np.isfinite(h['first_ra_month']):
+                    h['first_ra_month'] = t
+            else:
+                raise ValueError(f'Unknown delinquency code {s!r} at {loan}')
+            if z and z not in ZB_CODES:
+                raise ValueError(f'Unknown Zero Balance Code {z!r}')
+            if bool(z) != bool(zd):
+                raise ValueError(f'Zero Balance Code/date incomplete: {loan}')
+            if z:
+                effective = month(zd)
+                if not np.isfinite(h['zb_report_month']):
+                    h['zb_report_month'], h['zb_effective_month'], h['zb_code'] = t, effective, z
+            # Age is only a consistency audit, not the analysis clock (modifications can reset age).
+            if loan in orig.index and not row[7]:
+                h['age_disagreements'] += int(int(row[4]) != t-orig.at[loan, 'first_payment_date_month']+1)
     if h is not None:
         histories.append(h)
     hist = pd.DataFrame(histories).set_index('loan_identifier', drop=False)
@@ -216,17 +232,32 @@ def build_cohort(orig, hist, *, priority=2, zb_clock='effective'):
     """FPD=0; month-end exits delta+1; entry=max(0, first delta).
 
     Thus first observed month (delta, delta+1] enters strictly after its left edge;
-    no event is placed before observation. ZB effective date is the primary clock.
+    no event is placed before observation. Cause 2 is the earliest RA or valid
+    ZB exit; numeric 90+ remains Cause 1 only when it wins the month ordering.
+    ZB effective date is the primary ZB clock; RA always uses reporting month.
+    In an RA/ZB same-month tie, the source label is ZB and zb_ra_same_month
+    preserves the co-occurrence. This metadata rule implies no daily ordering.
     """
+    if priority not in (1, 2):
+        raise ValueError('priority must be 1 or 2')
+    if zb_clock not in ('effective', 'report'):
+        raise ValueError("zb_clock must be 'effective' or 'report'")
     d = orig.join(hist.drop(columns='loan_identifier'), how='left', validate='one_to_one')
     fpd = d.first_payment_date_month
     z = d['zb_effective_month' if zb_clock == 'effective' else 'zb_report_month']
     e = d.event_month
-    tie = e.notna() & z.notna() & e.eq(z)
-    cause1 = e.notna() & (z.isna() | (e < z) | (tie & (priority == 1)))
-    cause2 = z.notna() & ~cause1
+    ra = d.first_ra_month
+    competing = pd.concat([z, ra], axis=1).min(axis=1, skipna=True)
+    tie = e.notna() & competing.notna() & e.eq(competing)
+    cause1 = e.notna() & (competing.isna() | (e < competing) | (tie & (priority == 1)))
+    cause2 = competing.notna() & ~cause1
+    zb_source = cause2 & z.notna() & z.eq(competing)
     d['J'] = np.select([cause1, cause2], [1,2], default=0).astype(int)
-    terminal = pd.Series(np.select([cause1,cause2], [e,z], default=d.last_month), index=d.index)
+    terminal = pd.Series(np.select([cause1,cause2], [e,competing], default=d.last_month), index=d.index)
+    d['terminal_month'] = terminal
+    d['event_source'] = np.select([cause1, zb_source, cause2], ['NUMERIC_90', 'ZB', 'RA'], default='CENSOR')
+    d['competing_month'] = competing
+    d['zb_ra_same_month'] = z.notna() & ra.notna() & z.eq(ra)
     d['L'] = np.maximum(0, d.first_month-fpd)
     d['T'] = terminal-fpd+1
     d['follow_up'] = d['T']-d['L']
@@ -248,6 +279,8 @@ def build_cohort(orig, hist, *, priority=2, zb_clock='effective'):
     keep[['L','T']] = keep[['L','T']].astype(int)
     assert keep.index.is_unique and (keep['T'] > keep['L']).all()
     assert keep.J.isin([0,1,2]).all() and (keep.L >= 0).all()
+    assert keep.loc[keep.J.eq(2), 'event_source'].isin(['ZB', 'RA']).all()
+    assert keep.loc[keep.J.ne(2), 'event_source'].isin(['NUMERIC_90', 'CENSOR']).all()
     flow.append({'reason':'retained','n':len(keep),'cause1':int(keep.J.eq(1).sum()),'cause2':int(keep.J.eq(2).sum())})
     return keep, pd.DataFrame(flow), d.loc[d.exclusion.ne(''), ['loan_identifier','exclusion','J','L','T']]
 
@@ -270,7 +303,8 @@ class Encoder:
 
     Rare categories (<1% training prevalence) are pooled into the modal category.
     Unseen test levels use that reference too and are counted in transform audit.
-    No outcome or performance variable is available to this transformer.
+    Missing-indicator eligibility uses training outcomes only; no test outcome
+    or performance predictor is used. Spline knots use training covariates only.
     """
     continuous = {'classic_fico_score':50, 'original_dti':10, 'original_ltv':10,
                   'original_interest_rate':1, 'original_upb':100000,
@@ -318,12 +352,30 @@ class Encoder:
                 x[c+'__'+level] = s.eq(level).astype(float)
         if getattr(self, 'quadratic_fico', False):
             x['classic_fico_score__squared'] = x['classic_fico_score']**2
+        for c, knots in getattr(self, 'spline_knots', {}).items():
+            raw = data[c].fillna(self.medians[c]).to_numpy(float)
+            x[c+'__rcs'] = (rcs_component(raw, knots)-rcs_component(self.medians[c], knots))/self.continuous[c]
         return x.astype(float)
 
     def with_fico_quadratic(self):
         other = copy.deepcopy(self)
         other.quadratic_fico = True
         other.columns = [*self.columns, 'classic_fico_score__squared']
+        return other
+
+    def with_rcs(self, train, columns):
+        """Train-only 10/50/90% knots, one added df per specified covariate."""
+        if train.index.tolist() != self.training_ids:
+            raise ValueError('Spline knots must use the original encoder training partition')
+        other = copy.deepcopy(self)
+        other.spline_knots = {}
+        for c in columns:
+            if c not in self.continuous:
+                raise ValueError('Unknown continuous spline variable: '+c)
+            knots = train[c].dropna().quantile([.1, .5, .9]).to_numpy(float)
+            rcs_component([self.medians[c]], knots)
+            other.spline_knots[c] = knots.tolist()
+        other.columns = [*self.columns, *[c+'__rcs' for c in columns]]
         return other
 
     def transform(self, data):
@@ -336,4 +388,5 @@ class Encoder:
                     levels=self.levels, references=self.references, columns=self.columns,
                     dropped_constant=self.dropped_constant,
                     quadratic_fico=getattr(self, 'quadratic_fico', False),
+                    spline_knots=getattr(self, 'spline_knots', {}),
                     training_id_sha256=hashlib.sha256('\n'.join(map(str,self.training_ids)).encode()).hexdigest())

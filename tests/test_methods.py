@@ -73,7 +73,7 @@ class Invariants(unittest.TestCase):
         orig=pd.DataFrame({'loan_identifier':['a','b'],'first_payment_date_month':[100,100]},index=['a','b'])
         h=pd.DataFrame({'loan_identifier':['a','b'],'first_month':[100,103],'last_month':[110,110],
                         'event_month':[105,105],'zb_effective_month':[105,106],
-                        'zb_report_month':[104,105]},index=['a','b'])
+                        'zb_report_month':[104,105],'first_ra_month':[np.nan,np.nan]},index=['a','b'])
         primary,_,_=build_cohort(orig,h)
         self.assertEqual(primary.J.tolist(),[2,1])
         self.assertEqual(primary.L.tolist(),[0,3])
@@ -140,6 +140,67 @@ class Invariants(unittest.TestCase):
         self.assertEqual(v['metrics'].bootstrap_success.iloc[0],2)
         self.assertEqual(len(v['calibration']),5)
         self.assertTrue(v['calibration'].observed_low.notna().all())
+
+
+class BroaderCompetingExitP1(unittest.TestCase):
+    """P1 event-policy regressions; full P2 risk-set validation remains gated."""
+
+    @staticmethod
+    def cohort(*, numeric=np.nan, ra=np.nan, zb=np.nan, report=None, first=100,
+               last=112, priority=2, zb_clock='effective'):
+        orig=pd.DataFrame({'loan_identifier':['loan'], 'first_payment_date_month':[100]}, index=['loan'])
+        hist=pd.DataFrame({'loan_identifier':['loan'], 'first_month':[first], 'last_month':[last],
+                           'event_month':[numeric], 'first_ra_month':[ra],
+                           'zb_effective_month':[zb],
+                           'zb_report_month':[zb if report is None else report]}, index=['loan'])
+        return build_cohort(orig,hist,priority=priority,zb_clock=zb_clock)
+
+    def test_earliest_exit_and_source(self):
+        scenarios=[
+            ('numeric_before_ra', dict(numeric=103,ra=105,zb=109), 1,'NUMERIC_90',103),
+            ('ra_before_numeric', dict(numeric=106,ra=103,zb=109), 2,'RA',103),
+            ('ra_without_numeric_or_zb', dict(ra=103), 2,'RA',103),
+            ('zb_before_ra_and_numeric', dict(numeric=106,ra=105,zb=103), 2,'ZB',103),
+            ('ra_and_zb_same_month', dict(ra=103,zb=103), 2,'ZB',103),
+            ('no_terminal_event', dict(), 0,'CENSOR',112),
+        ]
+        for name,kwargs,cause,source,terminal in scenarios:
+            with self.subTest(name=name):
+                cohort,flow,excluded=self.cohort(**kwargs)
+                self.assertEqual(len(cohort),1)
+                self.assertTrue(excluded.empty)
+                row=cohort.iloc[0]
+                self.assertEqual((row.J,row.event_source,row.terminal_month),(cause,source,terminal))
+                self.assertEqual((row.L,row['T'],row.follow_up),(0,terminal-99,terminal-99))
+                self.assertEqual(int(flow.iloc[-1].n),1)
+                self.assertEqual(bool(row.zb_ra_same_month),name=='ra_and_zb_same_month')
+
+    def test_same_month_numeric_priority_and_source_tie(self):
+        for priority,cause,source in [(2,2,'RA'),(1,1,'NUMERIC_90')]:
+            row=self.cohort(numeric=103,ra=103,zb=109,priority=priority)[0].iloc[0]
+            self.assertEqual((row.J,row.event_source,row.same_month),(cause,source,True))
+        row=self.cohort(numeric=103,ra=103,zb=103)[0].iloc[0]
+        self.assertEqual((row.J,row.event_source,row.zb_ra_same_month),(2,'ZB',True))
+
+    def test_zb_clock_does_not_shift_ra_clock(self):
+        effective=self.cohort(ra=105,zb=106,report=104)[0].iloc[0]
+        reporting=self.cohort(ra=105,zb=106,report=104,zb_clock='report')[0].iloc[0]
+        self.assertEqual((effective.event_source,effective['T']),('RA',6))
+        self.assertEqual((reporting.event_source,reporting['T']),('ZB',5))
+
+    def test_entry_and_exclusions_use_selected_ra_terminal(self):
+        row=self.cohort(ra=105,zb=109,first=103)[0].iloc[0]
+        self.assertEqual((row.L,row['T'],row.follow_up),(3,6,3))
+        kept,_,excluded=self.cohort(ra=102,zb=109,first=103)
+        self.assertTrue(kept.empty)
+        self.assertEqual(excluded.exclusion.tolist(),['terminal_before_observation'])
+        kept,_,excluded=self.cohort(ra=99,zb=109)
+        self.assertTrue(kept.empty)
+        self.assertEqual(excluded.exclusion.tolist(),['terminal_before_observation'])
+
+    def test_invalid_policy_is_not_silently_accepted(self):
+        for kwargs in [dict(priority=0),dict(zb_clock='typo')]:
+            with self.assertRaises(ValueError):self.cohort(**kwargs)
 
 
 if __name__=='__main__': unittest.main()

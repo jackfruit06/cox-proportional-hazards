@@ -1,3 +1,4 @@
 ﻿scenario,cohort_n,cause1,cause2,changed_outcome,changed_exit
 same_month_cause1,49980,2049,37275,30,0
 zb_reporting_clock,49980,2019,37305,0,32
+RA_ZB_only,49980,2019,37305,0,1
